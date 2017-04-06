@@ -1,0 +1,28 @@
+.left_section {
+	width: 740px;
+	float: left;
+	background: none repeat scroll 0% 0% #FAFBFC;
+}
+
+.l_post {
+	border-top: 1px solid #D9D9D9;
+	background:
+		url('../html/images/main_bg_left.png')
+		repeat-y scroll 0% 0% transparent;
+	width: 740px;
+}
+
+.l_post  l_post_bright {
+	border-width: 0px 0px 1px 1px;
+	border-style: none none solid solid;
+	border-color: -moz-use-text-color -moz-use-text-color #E1E4E6 #E5E5E5;
+	-moz-border-top-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	border-image: none;
+	background: none repeat scroll 0% 0% #FAFBFC;
+	width: 739px;
+	margin: 0px;
+	padding: 0px;
+}
