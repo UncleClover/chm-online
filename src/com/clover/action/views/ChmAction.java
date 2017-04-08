@@ -1,4 +1,4 @@
-package com.clover.views.action;
+package com.clover.action.views;
 
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;

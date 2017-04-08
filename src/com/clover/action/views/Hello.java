@@ -1,4 +1,4 @@
-package com.clover.views.action;
+package com.clover.action.views;
 
 import com.opensymphony.xwork2.ActionSupport;
 
