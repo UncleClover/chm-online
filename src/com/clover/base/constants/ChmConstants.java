@@ -8,4 +8,6 @@ public class ChmConstants {
 	 * @value datasource.xml
 	 */
 	public final static String DATASOURCE_FILE_NAME = "datasource.xml";
+	
+	public final static String DB_TEST = "test";
 }
