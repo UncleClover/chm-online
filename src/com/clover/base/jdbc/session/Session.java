@@ -19,10 +19,8 @@ public abstract interface Session {
 
 	/**
 	 * @desc 插入表
-	 * @param tbName
-	 *            表名
-	 * @param DataRow
-	 *            插入的列
+	 * @param tbName 表名
+	 * @param DataRow 插入的列
 	 * @return int
 	 */
 	public abstract int insert(String tbName, DataRow data);
@@ -30,15 +28,22 @@ public abstract interface Session {
 	/**
 	 * @desc 根据条件删除表数据
 	 * @author zhangdq
-	 * @param tbName
-	 *            表名
-	 * @param identify
-	 *            删除条件的列名
-	 * @param identifyValue
-	 *            删除条件的值
+	 * @param tbName 表名
+	 * @param identify 删除条件的列名
+	 * @param identifyValue 删除条件的值
 	 * @return int
 	 */
 	public abstract int delete(String tbName, String identify, Object identifyValue);
+	
+	/**
+	 * @desc 根据SQL和条件删除表数据(可直接调用update方法)
+	 * @author zhangdq
+	 * @time 2017-6-2 下午3:12:25
+	 * @param SQL 删除SQL语句
+	 * @param objs 删除参数
+	 * @return int
+	 */
+	public abstract int delete(String sql, Object[] objs);
 
 	/**
 	 * @desc 更新表数据
@@ -54,8 +59,7 @@ public abstract interface Session {
 	/**
 	 * @desc 查询数据
 	 * @author zhangdq
-	 * @param sql
-	 *            查询SQL
+	 * @param sql 查询SQL
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql);
@@ -63,13 +67,54 @@ public abstract interface Session {
 	/**
 	 * @desc 查询数据、
 	 * @author zhangdq
-	 * @param sql
-	 *            查询SQL
-	 * @param objs
-	 *            查询参数
+	 * @param sql 查询SQL
+	 * @param objs 查询参数
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, Object[] objs);
+	
+	/**
+	 * @desc 查询数据前几行
+	 * @author zhangdq
+	 * @time 2017-6-2 下午4:10:08
+	 * @param SQL 查询SQL
+	 * @param rows 查询行数
+	 * @return List<DataRow>
+	 */
+	public abstract List<DataRow> query(String sql, int rows);
+	
+	
+	/**
+	 * @desc 根据条件查询数据前几行
+	 * @author zhangdq
+	 * @time 2017-6-2 下午4:17:45
+	 * @param 
+	 * @return
+	 */
+	public abstract List<DataRow> query(String sql, Object[] objs, int rows);
+	
+	/**
+	 * @desc 从某一行开始查询一定行数的数据
+	 * @author zhangdq
+	 * @time 2017-6-2 下午4:12:42
+	 * @param SQL 查询SQL
+	 * @param startRows 开始查询位置
+	 * @param rows 查询行数
+	 * @return List<DataRow>
+	 */
+	public abstract List<DataRow> query(String sql, int startRows, int rows);
+	
+	/**
+	 * @desc 根据条件从某一行开始查询一定行数的数据
+	 * @author zhangdq
+	 * @time 2017-6-2 下午4:13:49
+	 * @param SQL 查询SQL
+	 * @param objs 查询条件参数
+	 * @param startRows 开始查询位置
+	 * @param rows 查询行数
+	 * @return List<DataRow>
+	 */
+	public abstract List<DataRow> query(String sql, Object[] objs, int startRows, int rows);
 
 	/**
 	 * @desc 开启数据库事务
@@ -91,7 +136,7 @@ public abstract interface Session {
 	public abstract void rollbackTrans();
 
 	/**
-	 * @desc 关闭数据库连接
+	 * @desc 关闭数据库连接，数据库关闭异常不做处理
 	 * @author zhangdq
 	 */
 	public abstract void close();

@@ -1,8 +1,12 @@
 package com.clover.base.jdbc.session.impl;
 
+import java.sql.Blob;
+import java.sql.Clob;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -54,8 +58,13 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int delete(String tbName, String identify, Object identifyValue) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "DELETE FROM " + tbName + " WHERE " + identify + "=?";
+		return update(sql, new Object[] { identify });
+	}
+
+	@Override
+	public int delete(String sql, Object[] objs) {
+		return update(sql, objs);
 	}
 
 	@Override
@@ -84,38 +93,124 @@ public class SessionImpl implements Session {
 
 	@Override
 	public List<DataRow> query(String sql) {
-		// TODO Auto-generated method stub
-		return null;
+		return query(sql, null);
 	}
 
 	@Override
 	public List<DataRow> query(String sql, Object[] objs) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		List<DataRow> list = new ArrayList<DataRow>();
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (objs != null && objs.length > 0) {
+				for (int i = 1; i <= objs.length; i++) {
+					psmt.setObject(i, objs[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			ResultSetMetaData rsm = rs.getMetaData(); // 获得列集
+			while (rs.next()) {
+				list.add(toDataRow(rs, rsm));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<DataRow> query(String sql, int rows) {
+		return query(sql, null, rows);
+	}
+
+	@Override
+	public List<DataRow> query(String sql, Object[] objs, int rows) {
+		return query(sql, objs, 0, rows);
+	}
+
+	@Override
+	public List<DataRow> query(String sql, int startRows, int rows) {
+		return query(sql, null, startRows, rows);
+	}
+
+	@Override
+	public List<DataRow> query(String sql, Object[] objs, int startRows, int rows) {
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		List<DataRow> list = new ArrayList<DataRow>();
+
+		// 组装SQL语句
+		StringBuilder sb = new StringBuilder();
+		sb.append("select * from (select row_.*,rownum rownum_ from (");
+		sb.append(sql);
+		sb.append(") row_ where rownum <=" + (startRows + rows) + ") where rownum_ > " + startRows);
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sb.toString());
+
+		try {
+			psmt = conn.prepareStatement(sb.toString());
+			psmt.setFetchSize(50);
+			if (objs != null && objs.length > 0) {
+				for (int i = 1; i <= objs.length; i++) {
+					psmt.setObject(i, objs[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			ResultSetMetaData rsm = rs.getMetaData(); // 获得列集
+			while (rs.next()) {
+				list.add(toDataRow(rs, rsm));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 	@Override
 	public void beginTrans() {
-		// TODO Auto-generated method stub
-
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.setAutoCommit(false);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void commitTrans() {
-		// TODO Auto-generated method stub
-
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void rollbackTrans() {
-		// TODO Auto-generated method stub
-
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.rollback();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void close() {
-		// TODO Auto-generated method stub
-
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+			conn = null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -148,5 +243,35 @@ public class SessionImpl implements Session {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * @desc 结果集转化为DataRow格式
+	 * @author zhangdq
+	 * @time 2017-6-2 下午3:42:58
+	 * @param
+	 * @return
+	 */
+	public DataRow toDataRow(ResultSet rs, ResultSetMetaData rsmd) {
+		DataRow data = new DataRow();
+		try {
+			// 获得列的个数
+			int col = rsmd.getColumnCount();
+			for (int i = 0; i < col; i++) {
+				String colmunName = rsmd.getColumnName(i + 1);
+				Object value = rs.getObject(colmunName);
+				if (value instanceof Clob) {
+					value = rs.getString(colmunName);
+				} else if (value instanceof Blob) {
+					value = rs.getByte(colmunName);
+				} else if (value instanceof Date) {
+					value = rs.getTimestamp(colmunName);
+				}
+				data.set(colmunName, value);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return data;
 	}
 }
