@@ -68,6 +68,11 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
+	public int update(String sql) {
+		return update(sql, null);
+	}
+
+	@Override
 	public int update(String sql, Object[] objs) {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
@@ -89,6 +94,41 @@ public class SessionImpl implements Session {
 			closeStatement(psmt);
 		}
 		return result;
+	}
+
+	@Override
+	public int update(String tbName, DataRow data, String identify, Object identifyValue) {
+		return update(tbName, data, new String[] { identify }, new Object[] { identifyValue });
+	}
+
+	@Override
+	public int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues) {
+		// 组装更新SQL语句
+		StringBuilder sb = new StringBuilder();
+		sb.append("update ").append(tbName).append(" set ");
+
+		// 如果更新的字段是条件之一，则从更新字段中删除
+		for (int i = 0; i < identifys.length; i++) {
+			data.remove(identifyValues[i]);
+		}
+		int i = 0;
+		List<Object> valueList = new ArrayList<Object>();
+		for (Iterator<?> it = data.keySet().iterator(); it.hasNext();) {
+			i++;
+			String key = (String) it.next();
+			valueList.add(data.get(key));
+			if (i < data.size()) {
+				sb.append(key + "=?, ");
+			} else {
+				sb.append(key + "=? ");
+			}
+		}
+		for (int j = 0; j < identifys.length; j++) {
+			System.out.println(identifys[j]);
+			sb.append((j == 0 ? " where " : " and ") + identifys[j] + "=?");
+			valueList.add(identifyValues[j]);
+		}
+		return update(sb.toString(),valueList.toArray());
 	}
 
 	@Override

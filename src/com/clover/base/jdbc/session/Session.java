@@ -48,13 +48,43 @@ public abstract interface Session {
 	/**
 	 * @desc 更新表数据
 	 * @author zhangdq
-	 * @param sql
-	 *            更新SQL语句
-	 * @param objs
-	 *            参数
+	 * @time 2017-6-2 下午6:09:43
+	 * @param 
+	 * @return
+	 */
+	public abstract int update(String sql);
+	/**
+	 * @desc 根据条件更新表数据
+	 * @author zhangdq
+	 * @param sql 更新SQL语句
+	 * @param objs 参数
 	 * @return int
 	 */
 	public abstract int update(String sql, Object[] objs);
+	
+	/**
+	 * @desc 根据表名和一定的条件更新某些列数据
+	 * @author zhangdq
+	 * @time 2017-6-2 下午6:15:54
+	 * @param tbName 表名
+	 * @param data 列数据
+	 * @param identify 更新条件列名
+	 * @param identifyValue 更新条件值
+	 * @return int
+	 */
+	public abstract int update(String tbName, DataRow data, String identify, Object identifyValue);
+	
+	/**
+	 * @desc 根据表名和一定的条件更新某些列数据
+	 * @author zhangdq
+	 * @time 2017-6-2 下午6:15:54
+	 * @param tbName 表名
+	 * @param data 列数据
+	 * @param identifys 更新条件列名
+	 * @param identifyValues 更新条件值
+	 * @return int
+	 */
+	public abstract int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues);
 
 	/**
 	 * @desc 查询数据
