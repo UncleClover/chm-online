@@ -3,6 +3,7 @@ package com.clover.base.jdbc.session;
 import java.sql.Connection;
 import java.util.List;
 
+import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
 
 /**
@@ -34,34 +35,35 @@ public abstract interface Session {
 	 * @return int
 	 */
 	public abstract int delete(String tbName, String identify, Object identifyValue);
-	
+
 	/**
 	 * @desc 根据SQL和条件删除表数据(可直接调用update方法)
 	 * @author zhangdq
 	 * @time 2017-6-2 下午3:12:25
 	 * @param SQL 删除SQL语句
-	 * @param objs 删除参数
+	 * @param args 删除参数
 	 * @return int
 	 */
-	public abstract int delete(String sql, Object[] objs);
+	public abstract int delete(String sql, Object[] args);
 
 	/**
 	 * @desc 更新表数据
 	 * @author zhangdq
 	 * @time 2017-6-2 下午6:09:43
-	 * @param 
+	 * @param
 	 * @return
 	 */
 	public abstract int update(String sql);
+
 	/**
 	 * @desc 根据条件更新表数据
 	 * @author zhangdq
 	 * @param sql 更新SQL语句
-	 * @param objs 参数
+	 * @param args 参数
 	 * @return int
 	 */
-	public abstract int update(String sql, Object[] objs);
-	
+	public abstract int update(String sql, Object[] args);
+
 	/**
 	 * @desc 根据表名和一定的条件更新某些列数据
 	 * @author zhangdq
@@ -73,7 +75,7 @@ public abstract interface Session {
 	 * @return int
 	 */
 	public abstract int update(String tbName, DataRow data, String identify, Object identifyValue);
-	
+
 	/**
 	 * @desc 根据表名和一定的条件更新某些列数据
 	 * @author zhangdq
@@ -98,11 +100,11 @@ public abstract interface Session {
 	 * @desc 查询数据、
 	 * @author zhangdq
 	 * @param sql 查询SQL
-	 * @param objs 查询参数
+	 * @param args 查询参数
 	 * @return List<DataRow>
 	 */
-	public abstract List<DataRow> query(String sql, Object[] objs);
-	
+	public abstract List<DataRow> query(String sql, Object[] args);
+
 	/**
 	 * @desc 查询数据前几行
 	 * @author zhangdq
@@ -112,17 +114,16 @@ public abstract interface Session {
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, int rows);
-	
-	
+
 	/**
 	 * @desc 根据条件查询数据前几行
 	 * @author zhangdq
 	 * @time 2017-6-2 下午4:17:45
-	 * @param 
+	 * @param
 	 * @return
 	 */
-	public abstract List<DataRow> query(String sql, Object[] objs, int rows);
-	
+	public abstract List<DataRow> query(String sql, Object[] args, int rows);
+
 	/**
 	 * @desc 从某一行开始查询一定行数的数据
 	 * @author zhangdq
@@ -133,18 +134,174 @@ public abstract interface Session {
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, int startRows, int rows);
-	
+
 	/**
 	 * @desc 根据条件从某一行开始查询一定行数的数据
 	 * @author zhangdq
 	 * @time 2017-6-2 下午4:13:49
 	 * @param SQL 查询SQL
-	 * @param objs 查询条件参数
+	 * @param args 查询条件参数
 	 * @param startRows 开始查询位置
 	 * @param rows 查询行数
 	 * @return List<DataRow>
 	 */
-	public abstract List<DataRow> query(String sql, Object[] objs, int startRows, int rows);
+	public abstract List<DataRow> query(String sql, Object[] args, int startRows, int rows);
+
+	/**
+	 * @desc 查询int类型数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:52:37
+	 * @param sql 查询SQL
+	 * @return int
+	 */
+	public abstract int queryInt(String sql);
+
+	/**
+	 * @desc 根据条件查询int类型数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:53:13
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return int
+	 */
+	public abstract int queryInt(String sql, Object[] args);
+
+	/**
+	 * @desc 查询int数组
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:53:33
+	 * @param sql 查询SQL
+	 * @return int[]
+	 */
+	public abstract int[] queryIntArray(String sql);
+
+	/**
+	 * @desc 根据条件查询int数组
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:53:56
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return int[]
+	 */
+	public abstract int[] queryIntArray(String sql, Object[] args);
+
+	/**
+	 * @desc 查询long类型数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:57:47
+	 * @param sql 查询SQL
+	 * @return long
+	 */
+	public abstract long queryLong(String sql);
+
+	/**
+	 * @desc 根据条件查询查询long类型数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:58:17
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return long
+	 */
+	public abstract long queryLong(String sql, Object[] args);
+
+	/**
+	 * @desc 查询long数组数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:58:59
+	 * @param sql 查询SQL
+	 * @return long[]
+	 */
+	public abstract long[] queryLongArray(String sql);
+
+	/**
+	 * @desc 根据条件查询long数组数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午5:59:29
+	 * @param sql
+	 * @param args 查询条件参数
+	 * @return
+	 */
+	public abstract long[] queryLongArray(String sql, Object[] args);
+
+	/**
+	 * @desc 查询String类型数据
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:02:39
+	 * @param sql 查询SQL
+	 * @return String
+	 */
+	public abstract String queryString(String sql);
+
+	/**
+	 * @desc 根据条件查询String类型
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:03:09
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return String
+	 */
+	public abstract String queryString(String sql, Object[] args);
+
+	/**
+	 * @desc 查询String数组
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:03:58
+	 * @param sql 查询SQL
+	 * @return String[]
+	 */
+	public abstract String[] queryStringArray(String sql);
+
+	/**
+	 * @desc 根据条件查询String数组
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:04:03
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return String[]
+	 */
+	public abstract String[] queryStringArray(String sql, Object[] args);
+
+	/**
+	 * @desc 查询一条数据(DataRow)
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:04:12
+	 * @param sql 查询SQL
+	 * @return DataRow
+	 */
+	public abstract DataRow queryMap(String sql);
+
+	/**
+	 * @desc 根据条件查询一条数据(DataRow)
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:04:16
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @return DataRow
+	 */
+	public abstract DataRow queryMap(String sql, Object[] args);
+
+	/**
+	 * @desc 数据分页查询
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:04:24
+	 * @param sql 查询SQL
+	 * @param curPage 当前页数
+	 * @param numPerPage 每页显示数据条数
+	 * @return DBPage
+	 */
+	public abstract DBPage queryPage(String sql, int curPage, int numPerPage);
+
+	/**
+	 * 
+	 * @author zhangdq
+	 * @time 2017-6-5 下午6:04:27
+	 * @param sql 查询SQL
+	 * @param args 查询条件参数
+	 * @param curPage 当前页数
+	 * @param numPerPage 每页显示数据条数
+	 * @return DBPage
+	 */
+	public abstract DBPage queryPage(String sql, Object[] args, int curPage, int numPerPage);
 
 	/**
 	 * @desc 开启数据库事务
