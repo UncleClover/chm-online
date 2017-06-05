@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
 import com.clover.base.jdbc.session.Session;
 
@@ -63,8 +64,8 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
-	public int delete(String sql, Object[] objs) {
-		return update(sql, objs);
+	public int delete(String sql, Object[] args) {
+		return update(sql, args);
 	}
 
 	@Override
@@ -73,16 +74,16 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
-	public int update(String sql, Object[] objs) {
+	public int update(String sql, Object[] args) {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		int result = 0;
 		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
 		try {
 			psmt = (PreparedStatement) this.conn.prepareStatement(sql);
-			if (objs != null && objs.length > 0) {
-				for (int i = 1; i <= objs.length; i++) {
-					psmt.setObject(i, objs[i - 1]);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[i - 1]);
 				}
 			}
 
@@ -128,7 +129,7 @@ public class SessionImpl implements Session {
 			sb.append((j == 0 ? " where " : " and ") + identifys[j] + "=?");
 			valueList.add(identifyValues[j]);
 		}
-		return update(sb.toString(),valueList.toArray());
+		return update(sb.toString(), valueList.toArray());
 	}
 
 	@Override
@@ -137,16 +138,16 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
-	public List<DataRow> query(String sql, Object[] objs) {
+	public List<DataRow> query(String sql, Object[] args) {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
 		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
 		try {
 			psmt = conn.prepareStatement(sql);
-			if (objs != null && objs.length > 0) {
-				for (int i = 1; i <= objs.length; i++) {
-					psmt.setObject(i, objs[(i - 1)]);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
 				}
 			}
 			rs = psmt.executeQuery();
@@ -166,8 +167,8 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
-	public List<DataRow> query(String sql, Object[] objs, int rows) {
-		return query(sql, objs, 0, rows);
+	public List<DataRow> query(String sql, Object[] args, int rows) {
+		return query(sql, args, 0, rows);
 	}
 
 	@Override
@@ -176,7 +177,7 @@ public class SessionImpl implements Session {
 	}
 
 	@Override
-	public List<DataRow> query(String sql, Object[] objs, int startRows, int rows) {
+	public List<DataRow> query(String sql, Object[] args, int startRows, int rows) {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
@@ -192,9 +193,9 @@ public class SessionImpl implements Session {
 		try {
 			psmt = conn.prepareStatement(sb.toString());
 			psmt.setFetchSize(50);
-			if (objs != null && objs.length > 0) {
-				for (int i = 1; i <= objs.length; i++) {
-					psmt.setObject(i, objs[(i - 1)]);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
 				}
 			}
 			rs = psmt.executeQuery();
@@ -206,6 +207,86 @@ public class SessionImpl implements Session {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public int queryInt(String sql) {
+		return queryInt(sql, null);
+	}
+
+	@Override
+	public int queryInt(String sql, Object[] args) {
+		return 0;
+	}
+
+	@Override
+	public int[] queryIntArray(String sql) {
+		return queryIntArray(sql, null);
+	}
+
+	@Override
+	public int[] queryIntArray(String sql, Object[] args) {
+		return null;
+	}
+
+	@Override
+	public long queryLong(String sql) {
+		return queryLong(sql, null);
+	}
+
+	@Override
+	public long queryLong(String sql, Object[] args) {
+		return 0;
+	}
+
+	@Override
+	public long[] queryLongArray(String sql) {
+		return queryLongArray(sql, null);
+	}
+
+	@Override
+	public long[] queryLongArray(String sql, Object[] args) {
+		return null;
+	}
+
+	@Override
+	public String queryString(String sql) {
+		return queryString(sql, null);
+	}
+
+	@Override
+	public String queryString(String sql, Object[] args) {
+		return null;
+	}
+
+	@Override
+	public String[] queryStringArray(String sql) {
+		return queryStringArray(sql, null);
+	}
+
+	@Override
+	public String[] queryStringArray(String sql, Object[] args) {
+		return null;
+	}
+
+	@Override
+	public DataRow queryMap(String sql) {
+		return queryMap(sql, null);
+	}
+
+	@Override
+	public DataRow queryMap(String sql, Object[] args) {
+		return null;
+	}
+
+	@Override
+	public DBPage queryPage(String sql, int curPage, int numPerPage) {
+		return queryPage(sql, null, curPage, numPerPage);
+	}
+
+	@Override
+	public DBPage queryPage(String sql, Object[] args, int curPage, int numPerPage) {
+		return null;
 	}
 
 	@Override
