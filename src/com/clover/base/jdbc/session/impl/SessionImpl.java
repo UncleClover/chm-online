@@ -216,7 +216,27 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int queryInt(String sql, Object[] args) {
-		return 0;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int result = 0;
+		
+		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			if(rs.next()){
+				result = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@Override
