@@ -78,9 +78,9 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		
+
 		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
-		
+
 		try {
 			psmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			if (args != null && args.length > 0) {
@@ -94,6 +94,52 @@ public class SessionImpl implements Session {
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
+	}
+
+	@Override
+	public int[] batchUpdate(String[] sql) {
+		Statement stmt = null;
+		int[] result = null;
+		try {
+			stmt = conn.createStatement();
+			for (int i = 0; i < sql.length; i++) {
+				logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql[i]);
+
+				stmt.addBatch(sql[i]);
+			}
+
+			result = stmt.executeBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeStatement(stmt);
+		}
+		return result;
+	}
+
+	@Override
+	public int[] batchUpdate(String sql, Object[][] args) {
+		PreparedStatement psmt = null;
+		int[] result = null;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			for (int i = 0; i < args.length; i++) {
+				Object[] ojbs = args[i];
+				for (int j = 1; j < ojbs.length; j++) {
+					psmt.setObject(j, ojbs[(j - 1)]);
+				}
+				psmt.addBatch();
+			}
+			result = psmt.executeBatch();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			closeStatement(psmt);
 		}
 		return result;

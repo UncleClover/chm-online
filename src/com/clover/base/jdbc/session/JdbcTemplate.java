@@ -3,6 +3,7 @@ package com.clover.base.jdbc.session;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
 import com.clover.base.utils.StringUtils;
 
@@ -44,6 +45,38 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.insert(tbName, data);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int delete(String tbName, String identify, Object identifyValue) {
+		Session session = null;
+		int result = 0;
+
+		try {
+			session = getSession();
+			result = session.delete(tbName, identify, identifyValue);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int delete(String sql, Object[] args) {
+		Session session = null;
+		int result = 0;
+
+		try {
+			session = getSession();
+			result = session.delete(sql, args);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -104,6 +137,36 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.update(tbName, data, identifys, identifyValues);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int[] batchUpdate(String[] sql) {
+		Session session = null;
+		int[] result = null;
+		try {
+			session = getSession();
+			result = session.batchUpdate(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int[] batchUpdate(String sql, Object[][] args) {
+		Session session = null;
+		int[] result = null;
+		try {
+			session = getSession();
+			result = session.batchUpdate(sql, args);
 		} finally {
 			if (session != null) {
 				session.close();
@@ -201,5 +264,245 @@ public class JdbcTemplate {
 			}
 		}
 		return list;
+	}
+
+	public int queryInt(String sql) {
+		Session session = null;
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.queryInt(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int queryInt(String sql, Object[] args) {
+		Session session = null;
+		int result = 0;
+		try {
+			session = getSession();
+			result = session.queryInt(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int[] queryIntArray(String sql) {
+		Session session = null;
+		int[] result = null;
+		try {
+			session = getSession();
+			result = session.queryIntArray(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public int[] queryIntArray(String sql, Object[] args) {
+		Session session = null;
+		int[] result = null;
+		try {
+			session = getSession();
+			result = session.queryIntArray(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public long queryLong(String sql) {
+		Session session = null;
+		long result = 0L;
+		try {
+			session = getSession();
+			result = session.queryLong(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public long queryLong(String sql, Object[] args) {
+		Session session = null;
+		long result = 0L;
+		try {
+			session = getSession();
+			result = session.queryLong(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public long[] queryLongArray(String sql) {
+		Session session = null;
+		long[] result = null;
+		try {
+			session = getSession();
+			result = session.queryLongArray(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public long[] queryLongArray(String sql, Object[] args) {
+		Session session = null;
+		long[] result = null;
+		try {
+			session = getSession();
+			result = session.queryLongArray(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public String queryString(String sql) {
+		Session session = null;
+		String result = null;
+		try {
+			session = getSession();
+			result = session.queryString(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public String queryString(String sql, Object[] args) {
+		Session session = null;
+		String result = null;
+		try {
+			session = getSession();
+			result = session.queryString(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public String[] queryStringArray(String sql) {
+		Session session = null;
+		String[] result = null;
+		try {
+			session = getSession();
+			result = session.queryStringArray(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public String[] queryStringArray(String sql, Object[] args) {
+		Session session = null;
+		String[] result = null;
+		try {
+			session = getSession();
+			result = session.queryStringArray(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public DataRow queryMap(String sql) {
+		Session session = null;
+		DataRow result = new DataRow();
+		try {
+			session = getSession();
+			result = session.queryMap(sql);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public DataRow queryMap(String sql, Object[] args) {
+		Session session = null;
+		DataRow result = new DataRow();
+		try {
+			session = getSession();
+			result = session.queryMap(sql, args);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public DBPage queryPage(String sql, int curPage, int numPerPage) {
+		Session session = null;
+		DBPage result = null;
+		try {
+			session = getSession();
+			result = session.queryPage(sql, curPage, numPerPage);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
+	}
+
+	public DBPage queryPage(String sql, Object[] args, int curPage, int numPerPage) {
+		Session session = null;
+		DBPage result = null;
+		try {
+			session = getSession();
+			result = session.queryPage(sql, args, curPage, numPerPage);
+		} finally {
+			if (session != null) {
+				session.close();
+				session = null;
+			}
+		}
+		return result;
 	}
 }
