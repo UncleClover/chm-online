@@ -78,7 +78,9 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
+		
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		
 		try {
 			psmt = (PreparedStatement) this.conn.prepareStatement(sql);
 			if (args != null && args.length > 0) {
@@ -142,7 +144,7 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
-		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 		try {
 			psmt = conn.prepareStatement(sql);
 			if (args != null && args.length > 0) {
@@ -157,6 +159,9 @@ public class SessionImpl implements Session {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
 		}
 		return list;
 	}
@@ -188,7 +193,7 @@ public class SessionImpl implements Session {
 		sb.append(sql);
 		sb.append(") row_ where rownum <=" + (startRows + rows) + ") where rownum_ > " + startRows);
 
-		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sb.toString());
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sb.toString());
 
 		try {
 			psmt = conn.prepareStatement(sb.toString());
@@ -205,6 +210,9 @@ public class SessionImpl implements Session {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
 		}
 		return list;
 	}
@@ -219,8 +227,8 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		int result = 0;
-		
-		logger.info("开始执行SQL<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>sql = " + sql);
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -230,11 +238,14 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				result = rs.getInt(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
 		}
 		return result;
 	}
@@ -246,7 +257,39 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int[] queryIntArray(String sql, Object[] args) {
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int[] result = null;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+
+			List<Integer> list = new ArrayList<Integer>();
+			while (rs.next()) {
+				list.add(Integer.valueOf(rs.getInt(1)));
+			}
+
+			if (list != null && list.size() > 0) {
+				result = new int[list.size()];
+				for (int i = 0; i < list.size(); i++) {
+					result[i] = list.get(i);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
 	}
 
 	@Override
@@ -256,7 +299,30 @@ public class SessionImpl implements Session {
 
 	@Override
 	public long queryLong(String sql, Object[] args) {
-		return 0;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		long result = 0;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getLong(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
 	}
 
 	@Override
@@ -266,7 +332,39 @@ public class SessionImpl implements Session {
 
 	@Override
 	public long[] queryLongArray(String sql, Object[] args) {
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		long[] result = null;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+
+			List<Long> list = new ArrayList<Long>();
+			while (rs.next()) {
+				list.add(Long.valueOf(rs.getLong(1)));
+			}
+
+			if (list != null && list.size() > 0) {
+				result = new long[list.size()];
+				for (int i = 0; i < list.size(); i++) {
+					result[i] = list.get(i);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
 	}
 
 	@Override
@@ -276,7 +374,30 @@ public class SessionImpl implements Session {
 
 	@Override
 	public String queryString(String sql, Object[] args) {
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		String result = null;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			if (rs.next()) {
+				result = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
 	}
 
 	@Override
@@ -286,7 +407,39 @@ public class SessionImpl implements Session {
 
 	@Override
 	public String[] queryStringArray(String sql, Object[] args) {
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		String[] result = null;
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+
+			List<String> list = new ArrayList<String>();
+			while (rs.next()) {
+				list.add(rs.getString(1));
+			}
+
+			if (list != null && list.size() > 0) {
+				result = new String[list.size()];
+				for (int i = 0; i < list.size(); i++) {
+					result[i] = list.get(i);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return result;
 	}
 
 	@Override
@@ -296,7 +449,31 @@ public class SessionImpl implements Session {
 
 	@Override
 	public DataRow queryMap(String sql, Object[] args) {
-		return null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		DataRow data = new DataRow();
+
+		logger.info("开始执行SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			if (args != null && args.length > 0) {
+				for (int i = 1; i <= args.length; i++) {
+					psmt.setObject(i, args[(i - 1)]);
+				}
+			}
+			rs = psmt.executeQuery();
+			ResultSetMetaData rsm = rs.getMetaData(); // 获得列集
+			while (rs.next()) {
+				data = toDataRow(rs, rsm);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			closeResultSet(rs);
+			closeStatement(psmt);
+		}
+		return data;
 	}
 
 	@Override
@@ -306,7 +483,30 @@ public class SessionImpl implements Session {
 
 	@Override
 	public DBPage queryPage(String sql, Object[] args, int curPage, int numPerPage) {
-		return null;
+		String queryTotalRowsSql = sql;
+		int orderIndex = sql.toLowerCase().indexOf(" order ");
+		if (orderIndex != -1) {
+			queryTotalRowsSql = sql.substring(0, orderIndex);
+		}
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("SELECT COUNT(1) FROM ( ");
+		sb.append(queryTotalRowsSql);
+		sb.append(") TOTALROWS");
+
+		int totalRows = queryInt(sb.toString(), args);
+		DBPage page = new DBPage(curPage, numPerPage);
+		page.setTotalRows(totalRows);
+
+		int startIndex = page.getStartIndex();
+		int endIndex = page.getLastIndex();
+		int rows = endIndex - startIndex;
+		rows = rows < 0 ? 0 : rows;
+
+		List<DataRow> list = query(sql, args, startIndex, rows);
+		page.setData(list);
+
+		return page;
 	}
 
 	@Override
