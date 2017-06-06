@@ -77,6 +77,13 @@ public class DBPage {
 		}
 	}
 
+	/**
+	 * @desc 计算总共可以分成几页
+	 * @author zhangdq
+	 * @time 2017-6-6 下午1:02:50
+	 * @param 
+	 * @return
+	 */
 	private void calcTotalPages() {
 		if (this.totalRows % this.numPerPage == 0) {
 			this.totalPages = (this.totalRows / this.numPerPage);
@@ -85,10 +92,24 @@ public class DBPage {
 		}
 	}
 
+	/**
+	 * @desc 计算分页查询的起始页数
+	 * @author zhangdq
+	 * @time 2017-6-6 下午1:03:22
+	 * @param 
+	 * @return
+	 */
 	private void calcStartIndex() {
 		this.startIndex = ((this.currentPage - 1) * this.numPerPage);
 	}
 
+	/**
+	 * @desc 计算分页查询的结束页数
+	 * @author zhangdq
+	 * @time 2017-6-6 下午1:08:34
+	 * @param 
+	 * @return
+	 */
 	private void calcLastIndex() {
 		if (this.totalRows < this.numPerPage) {
 			this.lastIndex = this.totalRows;
