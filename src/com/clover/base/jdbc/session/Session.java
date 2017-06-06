@@ -89,6 +89,25 @@ public abstract interface Session {
 	public abstract int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues);
 
 	/**
+	 * @desc 批更新数据
+	 * @author zhangdq
+	 * @time 2017-6-6 下午4:44:44
+	 * @param sql 更新SQL的数组
+	 * @return int[]
+	 */
+	public abstract int[] batchUpdate(String[] sql);
+	
+	/**
+	 * @desc 根据条件批更新数据
+	 * @author zhangdq
+	 * @time 2017-6-6 下午4:45:14
+	 * @param sql 更新SQL
+	 * @param args 查询条件的二维数组
+	 * @return int[]
+	 */
+	public abstract int[] batchUpdate(String sql, Object[][] args);
+	
+	/**
 	 * @desc 查询数据
 	 * @author zhangdq
 	 * @param sql 查询SQL
