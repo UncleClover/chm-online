@@ -79,4 +79,76 @@ public class ConnTools {
 		}
 		return null;
 	}
+	
+	/**
+	 * 开启数据库事务
+	 * @author zhangdq
+	 * @date 2017-6-13 下午5:21:55
+	 * @param 
+	 * @return
+	 */
+	public static void beginTrans(Connection conn) {
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.setAutoCommit(false);
+			}
+		} catch (SQLException e) {
+			logger.info("开启数据库事务异常-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 提交数据库事务
+	 * @author zhangdq
+	 * @date 2017-6-13 下午5:21:45
+	 * @param 
+	 * @return
+	 */
+	public static void commitTrans(Connection conn) {
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			logger.info("提交数据库事务异常-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 回滚数据库事务操作
+	 * @author zhangdq
+	 * @date 2017-6-13 下午5:21:58
+	 * @param 
+	 * @return
+	 */
+	public static void rollbackTrans(Connection conn) {
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.rollback();
+			}
+		} catch (SQLException e) {
+			logger.info("回滚数据库事务异常-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 关闭数据库连接
+	 * @author zhangdq
+	 * @date 2017-6-13 下午5:19:09
+	 * @param 
+	 * @return
+	 */
+	public static void close(Connection conn) {
+		try {
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
+			}
+		} catch (SQLException e) {
+			logger.info("关闭数据库连接-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
+			e.printStackTrace();
+		}
+	}
 }
