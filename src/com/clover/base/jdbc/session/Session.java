@@ -346,4 +346,13 @@ public abstract interface Session {
 	 * @author zhangdq
 	 */
 	public abstract void close();
+	
+	/**
+	 * 获取插入式自动生成的主键
+	 * @author zhangdq
+	 * @date 2017-6-13 下午4:30:44
+	 * @param 
+	 * @return
+	 */
+	public abstract String getGeneratedKeys();
 }
