@@ -116,7 +116,7 @@ public abstract interface Session {
 	public abstract List<DataRow> query(String sql);
 
 	/**
-	 * 查询数据、
+	 * 查询数据
 	 * @author zhangdq
 	 * @param sql 查询SQL
 	 * @param args 查询参数
@@ -348,7 +348,7 @@ public abstract interface Session {
 	public abstract void close();
 	
 	/**
-	 * 获取插入式自动生成的主键
+	 * 获取插入时自动生成的主键
 	 * @author zhangdq
 	 * @date 2017-6-13 下午4:30:44
 	 * @param 
