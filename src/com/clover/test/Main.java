@@ -1,20 +1,18 @@
 package com.clover.test;
-import java.sql.Connection;
 
-import com.clover.base.jdbc.ConnTools;
+import com.clover.base.constants.ChmConstants;
 import com.clover.base.jdbc.DataRow;
-import com.clover.base.jdbc.session.Session;
-import com.clover.base.jdbc.session.impl.SessionImpl;
+import com.clover.base.jdbc.SequenceGenerator;
+import com.clover.base.jdbc.session.JdbcTemplate;
 
 
 public class Main {
 	public static void main(String[] args) {
-	    Connection conn = ConnTools.getConnect("test");
-		Session session = new SessionImpl(conn);
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(ChmConstants.DB_TEST);
 		DataRow data = new DataRow();
-		data.set("id", "2");
+		data.set("id", SequenceGenerator.getInstance().getNextSequence(ChmConstants.DB_TEST,"T_CLOVER_USER"));
 		data.set("name", "clover");
-		session.insert("T_CLOVER_USER", data);
-		session.close();
+		jdbcTemplate.insert("T_CLOVER_USER", data);
+		jdbcTemplate.getgeneratedKeys();
 	}
 }
