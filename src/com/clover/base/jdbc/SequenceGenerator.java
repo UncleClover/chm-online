@@ -142,7 +142,7 @@ public class SequenceGenerator {
 		if (StringUtils.isNotEmpty(tableName)) {
 			seqName = tableName.toLowerCase();
 			if (seqName.startsWith("t_")) {
-				seqName.replace("^t", "seq");
+				seqName = seqName.replaceFirst("^t", "seq");
 			} else {
 				seqName = "seq_" + seqName;
 			}
@@ -187,7 +187,7 @@ public class SequenceGenerator {
 	 */
 	private static void closeStatment(Statement stmt) {
 		try {
-			if (stmt != null && !stmt.isClosed()) {
+			if (stmt != null) {
 				stmt.close();
 			}
 		} catch (SQLException e) {
@@ -205,7 +205,7 @@ public class SequenceGenerator {
 	 */
 	private static void closeResult(ResultSet rs) {
 		try {
-			if (rs != null && !rs.isClosed()) {
+			if (rs != null) {
 				rs.close();
 			}
 		} catch (SQLException e) {
