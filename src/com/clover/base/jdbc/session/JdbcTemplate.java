@@ -16,7 +16,8 @@ import com.clover.base.utils.StringUtils;
  * @date 2017-6-2 下午5:34:58
  */
 public class JdbcTemplate {
-	private String id;// 数据库配置ID
+	private String id;				// 数据库配置ID
+	private String generatedKeys;	// 数据库主键自增长ID
 
 	public JdbcTemplate() {
 	}
@@ -45,6 +46,7 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.insert(tbName, data);
+			generatedKeys = session.getGeneratedKeys();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -92,6 +94,7 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.update(sql);
+			generatedKeys = session.getGeneratedKeys();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -107,6 +110,7 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.update(sql, objs);
+			generatedKeys = session.getGeneratedKeys();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -122,6 +126,7 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.update(tbName, data, identify, identifyValue);
+			generatedKeys = session.getGeneratedKeys();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -137,6 +142,7 @@ public class JdbcTemplate {
 		try {
 			session = getSession();
 			result = session.update(tbName, data, identifys, identifyValues);
+			generatedKeys = session.getGeneratedKeys();
 		} finally {
 			if (session != null) {
 				session.close();
@@ -504,5 +510,9 @@ public class JdbcTemplate {
 			}
 		}
 		return result;
+	}
+	
+	public String getgeneratedKeys(){
+		return generatedKeys;
 	}
 }
