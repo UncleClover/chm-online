@@ -718,20 +718,20 @@ public class SessionImpl implements Session {
 	 * @param Connection 数据库连接
 	 * @return
 	 */
-	public void setDababaseType(Connection conn){
+	public void setDababaseType(Connection conn) {
 		try {
-	        String databaseTypeStr = conn.getMetaData().getDatabaseProductName();
-	        if(databaseTypeStr.equalsIgnoreCase("oracle")){
-	        	databaseType = DatabaseType.ORACLE;
-	        }else if(databaseTypeStr.equalsIgnoreCase("MySQL")){
-	        	databaseType = DatabaseType.MYSQL;
-	        }else{
-	        	throw new Exception("暂不支持该数据库！<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
-	        }
-	        logger.error("查询数据产商失败~默认返回Oracle数据库类型");
-        } catch (Exception e) {
-        	logger.info("设置数据库连接类型异常-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
-	        e.printStackTrace();
-        }
+			String databaseTypeStr = conn.getMetaData().getDatabaseProductName();
+			if (databaseTypeStr.equalsIgnoreCase("oracle")) {
+				databaseType = DatabaseType.ORACLE;
+			} else if (databaseTypeStr.equalsIgnoreCase("MySQL")) {
+				databaseType = DatabaseType.MYSQL;
+			} else {
+				logger.error("查询数据产商失败~默认返回Oracle数据库类型");
+				throw new Exception("暂不支持该数据库！<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
+			}
+		} catch (Exception e) {
+			logger.info("设置数据库连接类型异常-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
+			e.printStackTrace();
+		}
 	}
 }
