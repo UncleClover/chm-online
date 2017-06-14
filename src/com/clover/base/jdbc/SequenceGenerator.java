@@ -160,7 +160,7 @@ public class SequenceGenerator {
 	 */
 	private void createSequence(Connection conn, String seqName) {
 		PreparedStatement psmt = null;
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		sb.append("create sequence " + seqName + " ");
 		sb.append("minvalue 1 ");
 		sb.append("maxvalue 99999999999999999999 ");

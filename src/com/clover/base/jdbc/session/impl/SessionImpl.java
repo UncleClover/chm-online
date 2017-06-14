@@ -38,7 +38,7 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int insert(String tbName, DataRow data) {
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		sb.append("INSERT INTO ");
 		sb.append(tbName).append(" ");
 		sb.append("(");
@@ -171,7 +171,7 @@ public class SessionImpl implements Session {
 	@Override
 	public int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues) {
 		// 组装更新SQL语句
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		sb.append("update ").append(tbName).append(" set ");
 
 		// 如果更新的字段是条件之一，则从更新字段中删除
@@ -253,7 +253,7 @@ public class SessionImpl implements Session {
 		List<DataRow> list = new ArrayList<DataRow>();
 
 		// 组装SQL语句
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		if(DatabaseType.ORACLE == databaseType){
 			logger.info("Oracle数据库查询SQL组装~");
 			sb.append("select * from (select row_.*,rownum rownum_ from (");
@@ -570,7 +570,7 @@ public class SessionImpl implements Session {
 			queryTotalRowsSql = sql.substring(0, orderIndex);
 		}
 
-		StringBuilder sb = new StringBuilder();
+		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT COUNT(1) FROM ( ");
 		sb.append(queryTotalRowsSql);
 		sb.append(") TOTALROWS");
