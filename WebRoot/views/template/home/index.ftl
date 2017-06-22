@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>chm-online</title>
+    <link href="/favicon.ico" type="image/x-icon" rel=icon>
+	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href="css/basic.css" rel="stylesheet" />
@@ -27,9 +29,30 @@
         <nav class="navbar-default navbar-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
-                    <li><a class="current" href="javascript:void(0);">目录</a></li>
-                    <li><a href="javascript:void(0);">索引</a></li>
-                    <li><a href="javascript:void(0);">搜索</a></li>
+                    <li><a class="current" href="javascript:void(0);" id="context_tab">目录</a></li>
+                    <li><a href="javascript:void(0);" id="index_tab">索引</a></li>
+                    <li><a href="javascript:void(0);" id="search_tab">搜索</a></li>
+                </ul>
+                <ul class="index-ul" id="context">
+                	<li class="item"><a href="javascript:void(0);">click</a></li>
+                	<li class="item"><a href="javascript:void(0);">bind</a></li>
+                </ul>
+                <ul class="index-ul none" id="index">
+                	<li><input id="index-input" class="index-input" type="txt" /></li>
+                	<li class="item"><a href="javascript:void(0);">not</a></li>
+                	<li class="item"><a href="javascript:void(0);">function</a></li>
+                </ul>
+                <ul class="index-ul none" id="search">
+                	<li><input id="search-input" class="index-input" type="txt" /></li>
+                	<li class="item"><a href="javascript:void(0);">hover</a></li>
+                	<li class="item"><a href="javascript:void(0);">toggle</a></li>
+                	<li class="item"><a href="javascript:void(0);">hover</a></li>
+                	<li class="item"><a href="javascript:void(0);">toggle</a></li>
+                	<li class="item"><a href="javascript:void(0);">hover</a></li>
+                	<li class="item"><a href="javascript:void(0);">toggle</a></li>
+                	<li class="item"><a href="javascript:void(0);">hover</a></li>
+                	<li class="item"><a href="javascript:void(0);">toggle</a></li>
+                	
                 </ul>
             </div>
         </nav>
