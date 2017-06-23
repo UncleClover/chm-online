@@ -84,7 +84,7 @@
                 	<div class="col-md-8">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
-                                <thead><tr><th>#</th><th>站内昵称</th><th>CHM名字</th><th>Username</th><th>浏览 No.</th></tr></thead>
+                                <thead><tr><th>#</th><th>站内昵称</th><th>CHM篇数</th><th>CHM名字</th><th>浏览量</th></tr></thead>
                                 <tbody>
                                     <tr>
                                         <td>1</td>
@@ -149,63 +149,48 @@
                                         <td>@mdo</td>
                                         <td><span class="label label-info">100090</span></td>
                                     </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td><span class="label label-success">Mark</span></td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                        <td><span class="label label-info">100090</span></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-info">
-                            <div class="panel-heading"><i class="fa fa-bell fa-fw"></i>Notifications Panel</div>
+                            <div class="panel-heading"><i class="fa fa-bell fa-fw"></i>消息面板</div>
                             <div class="panel-body">
                                 <div class="list-group">
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-twitter fa-fw"></i>3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>12分钟前</em></span>
                                     </a>
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-envelope fa-fw"></i>Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>27分钟前</em></span>
                                     </a>
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-tasks fa-fw"></i>New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>43分钟前</em></span>
                                     </a>
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-upload fa-fw"></i>Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>11:32</em></span>
                                     </a>
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>11:13</em></span>
                                     </a>
                                     <a href="javascript:void(0);" class="list-group-item">
                                         <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                    </a>
-
-                                    <a href="javascript:void(0);" class="list-group-item">
-                                        <i class="fa fa-bolt fa-fw"></i>Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="list-group-item">
-                                        <i class="fa fa-warning fa-fw"></i>Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
-                                    </span>
-                                    </a>
-                                    <a href="javascript:void(0);" class="list-group-item">
-                                        <i class="fa fa-shopping-cart fa-fw"></i>New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
+                                    	<span class="pull-right text-muted small"><em>10:57</em></span>
                                     </a>
                                 </div>
-                                <a href="javascript:void(0);" class="btn btn-info btn-block">View All Alerts</a>
+                                <a href="javascript:void(0);" class="btn btn-info btn-block">MORE&nbsp;>></a>
                             </div>
                         </div>
                     </div>
