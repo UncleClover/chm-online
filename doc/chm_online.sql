@@ -14,6 +14,20 @@ create table t_chm_user(
   create_date varchar(20) not null
 )engine=innodb default charset utf8;
 
+create table t_chm_article(
+  id int not null primary key auto_increment,
+  title text,
+  content text,
+  user_id int,
+  read_times int,
+  update_times int,
+  status int,
+  open int,
+  type int,
+  keyword varchar(512),
+  update_time varchar(20),
+  create_time varchar(20)
+)engine=innodb default charset utf8;
 
 
 
