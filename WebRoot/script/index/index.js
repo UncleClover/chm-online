@@ -1,10 +1,10 @@
 /**
- * Ê×Ò³Ò³Ãæ´¦Àí(index.ftl)
+ * é¦–é¡µé¡µé¢å¤„ç†(index.ftl)
  * @author zhangdq
  * @time 2017-06-22 16:25
  */
 $(function(){
-	// ×ó²àµ¼º½Ä¿Â¼¡¢Ë÷ÒıºÍËÑË÷ÇĞ»»
+	// å·¦ä¾§å¯¼èˆªç›®å½•ã€ç´¢å¼•å’Œæœç´¢åˆ‡æ¢
 	$("#main-menu li a").click(function(){
 		var _currClass = $(this).attr("class");
 		if(_currClass && _currClass.indexOf("current") > -1){
@@ -13,7 +13,7 @@ $(function(){
 		$("#main-menu li a").removeClass("current");
 		$(this).addClass("current");
 		
-		// ×óµ¼º½ÄÚÈİÇĞ»»
+		// å·¦å¯¼èˆªå†…å®¹åˆ‡æ¢
 		var menu_id = $(this).attr("id");
 		if(menu_id == "context_tab"){
 			$("#index,#search").hide();
@@ -31,7 +31,7 @@ $(function(){
 		}
 	});
 	
-	// ×óµ¼º½Ë÷ÒıËÑË÷
+	// å·¦å¯¼èˆªç´¢å¼•æœç´¢
 	$("#index-input").bind("keyup", function(event) {
 		if (event.keyCode == "13") {
 			var content = $(this).val();
@@ -44,7 +44,7 @@ $(function(){
 		}
 	});
 	
-	// ×óµ¼º½ËÑË÷
+	// å·¦å¯¼èˆªæœç´¢
 	$("#search-input").bind("keyup", function(event) {
 		if (event.keyCode == "13") {
 			var content = $(this).val();
@@ -55,5 +55,10 @@ $(function(){
 				}
 			}
 		}
+	});
+	
+	// æ–°å¢chm
+	$("#add_chm").click(function(){
+		location.href = "/views/article.action";
 	});
 });
