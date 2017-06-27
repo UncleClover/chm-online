@@ -1,6 +1,7 @@
 package com.clover.dao.service;
 
-import java.util.HashMap;
+
+import com.clover.base.jdbc.DataRow;
 
 /**
  * 用户接口类
@@ -17,7 +18,7 @@ public interface UserService {
 	 * @time 2017-4-9 上午1:12:00
 	 * @param userAccount 登录账户
 	 * @param passWord 登录密码
-	 * @return HashMap<String, String>
+	 * @return DataRow
 	 */
-	HashMap<String, String> queryUser(String userAccount, String passWord);
+	DataRow queryUser(String userAccount, String passWord);
 }

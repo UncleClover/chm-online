@@ -10,6 +10,14 @@ public class ChmConstants {
 	public final static String DATASOURCE_FILE_NAME = "datasource.xml";
 	
 	/**
+	 * mysql chm-online数据库
+	 * @author zhangdq
+	 * @time 2017-06-27 15:00
+	 * @value chm
+	 */
+	public final static String DB_CHM = "chm";
+	
+	/**
 	 * 数据库异常代码，序列不存在-2289
 	 * @author zhangdq
 	 * @time 2017-06-13 18:12
