@@ -5,4 +5,5 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="userService" class="com.clover.dao.service.impl.UserServiceImpl" />
+    <bean id="articleService" class="com.clover.dao.service.impl.ArticleServiceImpl" />
 </beans>
