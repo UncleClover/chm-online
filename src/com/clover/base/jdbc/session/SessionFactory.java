@@ -6,20 +6,20 @@ import com.clover.base.jdbc.ConnTools;
 import com.clover.base.jdbc.session.impl.SessionImpl;
 
 /**
- * @desc »ñÈ¡Êı¾İ¿âÁ¬½ÓÊµÀı
+ * @desc è·å–æ•°æ®åº“è¿æ¥å®ä¾‹
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-6-2 ÏÂÎç5:05:05
+ * @date 2017-6-2 ä¸‹åˆ5:05:05
  */
 public final class SessionFactory {
 	
 	/**
-	 * @desc »ñÈ¡Ö¸¶¨IDµÄÊı¾İ¿âÊµÀı
+	 * @desc è·å–æŒ‡å®šIDçš„æ•°æ®åº“å®ä¾‹
 	 * @author zhangdq
-	 * @time 2017-6-2 ÏÂÎç5:05:29
-	 * @param id Êı¾İ¿âÅäÖÃID
+	 * @time 2017-6-2 ä¸‹åˆ5:05:29
+	 * @param id æ•°æ®åº“é…ç½®ID
 	 * @return Session
 	 */
 	public static Session getSession(String id) {
@@ -28,9 +28,9 @@ public final class SessionFactory {
 	}
 
 	/**
-	 * @desc »ñÈ¡Ä¬ÈÏÊı¾İ¿âÊµÀı
+	 * @desc è·å–é»˜è®¤æ•°æ®åº“å®ä¾‹
 	 * @author zhangdq
-	 * @time 2017-6-2 ÏÂÎç5:06:02
+	 * @time 2017-6-2 ä¸‹åˆ5:06:02
 	 * @param 
 	 * @return Session
 	 */

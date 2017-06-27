@@ -10,21 +10,21 @@ import javax.sql.DataSource;
 import org.apache.log4j.Logger;
 
 /**
- * @desc Êı¾İ¿âÁ¬½Ó¹¤¾ßÀà
+ * @desc æ•°æ®åº“è¿æ¥å·¥å…·ç±»
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-5-1 ÏÂÎç7:59:34
+ * @date 2017-5-1 ä¸‹åˆ7:59:34
  */
 public class ConnTools {
 	private static Logger logger = Logger.getLogger(ConnTools.class);
 	private static DataSourceTools datasourceTools = DataSourceTools.getInstance();
 
 	/**
-	 * @desc »ñÈ¡Ä¬ÈÏÊı¾İ¿âÁ¬½Ó
+	 * @desc è·å–é»˜è®¤æ•°æ®åº“è¿æ¥
 	 * @author zhangdq
-	 * @time 2017-5-1 ÏÂÎç7:59:05
+	 * @time 2017-5-1 ä¸‹åˆ7:59:05
 	 * @param
 	 * @return Connection
 	 */
@@ -34,17 +34,17 @@ public class ConnTools {
 			Connection conn = datasource.getConnection();
 			return conn;
 		} catch (SQLException e) {
-			logger.error("»ñÈ¡Ä¬ÈÏÊı¾İ¿âÁ¬½ÓÒì³£ <<<<<<<<<<>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.error("è·å–é»˜è®¤æ•°æ®åº“è¿æ¥å¼‚å¸¸ <<<<<<<<<<>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 		}
 		return null;
 	}
 
 	/**
-	 * @desc ¸ù¾İÊı¾İ¿âID»ñÈ¡Êı¾İÁ¬½Ó
+	 * @desc æ ¹æ®æ•°æ®åº“IDè·å–æ•°æ®è¿æ¥
 	 * @author zhangdq
-	 * @time 2017-5-1 ÏÂÎç7:57:18
+	 * @time 2017-5-1 ä¸‹åˆ7:57:18
 	 * @param id
-	 *            Êı¾İ¿âID
+	 *            æ•°æ®åº“ID
 	 * @return Connection
 	 */
 	public static Connection getConnect(String id) {
@@ -53,13 +53,13 @@ public class ConnTools {
 			Connection conn = datasource.getConnection();
 			return conn;
 		} catch (SQLException e) {
-			logger.error("»ñÈ¡Êı¾İ¿âÁ¬½ÓÒì³£-Êı¾İ¿âID=" + id + "<<<<<<<<<<>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.error("è·å–æ•°æ®åº“è¿æ¥å¼‚å¸¸-æ•°æ®åº“ID=" + id + "<<<<<<<<<<>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 		}
 		return null;
 	}
 
 	/**
-	 * @desc »ñÈ¡Êı¾İ¿âµ¥ÀıÁ¬½Ó
+	 * @desc è·å–æ•°æ®åº“å•ä¾‹è¿æ¥
 	 * @author zhangdq
 	 * @time 2017-5-2 23:42:23
 	 * @param id
@@ -75,15 +75,15 @@ public class ConnTools {
 			Class.forName(driver).newInstance();
 			return DriverManager.getConnection(url, user, password);
 		} catch (Exception e) {
-			logger.info("»ñÈ¡Êı¾İ¿âµ¥ÀıÁ¬½ÓÒì³£-Êı¾İ¿âID=" + id + "<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.info("è·å–æ•°æ®åº“å•ä¾‹è¿æ¥å¼‚å¸¸-æ•°æ®åº“ID=" + id + "<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 		}
 		return null;
 	}
 	
 	/**
-	 * ¿ªÆôÊı¾İ¿âÊÂÎñ
+	 * å¼€å¯æ•°æ®åº“äº‹åŠ¡
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:21:55
+	 * @date 2017-6-13 ä¸‹åˆ5:21:55
 	 * @param 
 	 * @return
 	 */
@@ -93,15 +93,15 @@ public class ConnTools {
 				conn.setAutoCommit(false);
 			}
 		} catch (SQLException e) {
-			logger.info("¿ªÆôÊı¾İ¿âÊÂÎñÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.info("å¼€å¯æ•°æ®åº“äº‹åŠ¡å¼‚å¸¸-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Ìá½»Êı¾İ¿âÊÂÎñ
+	 * æäº¤æ•°æ®åº“äº‹åŠ¡
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:21:45
+	 * @date 2017-6-13 ä¸‹åˆ5:21:45
 	 * @param 
 	 * @return
 	 */
@@ -111,15 +111,15 @@ public class ConnTools {
 				conn.commit();
 			}
 		} catch (SQLException e) {
-			logger.info("Ìá½»Êı¾İ¿âÊÂÎñÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.info("æäº¤æ•°æ®åº“äº‹åŠ¡å¼‚å¸¸-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * »Ø¹öÊı¾İ¿âÊÂÎñ²Ù×÷
+	 * å›æ»šæ•°æ®åº“äº‹åŠ¡æ“ä½œ
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:21:58
+	 * @date 2017-6-13 ä¸‹åˆ5:21:58
 	 * @param 
 	 * @return
 	 */
@@ -129,15 +129,15 @@ public class ConnTools {
 				conn.rollback();
 			}
 		} catch (SQLException e) {
-			logger.info("»Ø¹öÊı¾İ¿âÊÂÎñÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.info("å›æ»šæ•°æ®åº“äº‹åŠ¡å¼‚å¸¸-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * ¹Ø±ÕÊı¾İ¿âÁ¬½Ó
+	 * å…³é—­æ•°æ®åº“è¿æ¥
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:19:09
+	 * @date 2017-6-13 ä¸‹åˆ5:19:09
 	 * @param 
 	 * @return
 	 */
@@ -147,7 +147,7 @@ public class ConnTools {
 				conn.close();
 			}
 		} catch (SQLException e) {
-			logger.info("¹Ø±ÕÊı¾İ¿âÁ¬½Ó-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ĞÅÏ¢£º" + e);
+			logger.info("å…³é—­æ•°æ®åº“è¿æ¥-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>å¼‚å¸¸ä¿¡æ¯ï¼š" + e);
 			e.printStackTrace();
 		}
 	}

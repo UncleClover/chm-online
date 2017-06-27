@@ -3,20 +3,20 @@ package com.clover.dao.service;
 import java.util.HashMap;
 
 /**
- * @desc ÓÃ»§½Ó¿ÚÀà
+ * ç”¨æˆ·æ¥å£ç±»
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-4-9 ÉÏÎç1:06:39
+ * @date 2017-4-9 ä¸Šåˆ1:06:39
  */
 public interface UserService {
 	/**
-	 * @desc µÇÂ¼²éÑ¯
+	 * ç™»å½•æŸ¥è¯¢
 	 * @author zhangdq
-	 * @time 2017-4-9 ÉÏÎç1:12:00
-	 * @param userAccount µÇÂ¼ÕË»§
-	 * @param passWord µÇÂ¼ÃÜÂë
+	 * @time 2017-4-9 ä¸Šåˆ1:12:00
+	 * @param userAccount ç™»å½•è´¦æˆ·
+	 * @param passWord ç™»å½•å¯†ç 
 	 * @return HashMap<String, String>
 	 */
 	HashMap<String, String> queryUser(String userAccount, String passWord);

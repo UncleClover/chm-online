@@ -37,8 +37,8 @@ public class DataSourceTools {
 		InputStream file = ClassLoader.getSystemResourceAsStream(ChmConstants.DATASOURCE_FILE_NAME);
 		try {
 			Document document = builder.build(file);
-			Element root = document.getRootElement();// »ñµÃ¸ù½Úµã
-			_default = root.getAttributeValue("default");// »ñÈ¡Ä¬ÈÏÊı¾İ¿âÁ¬½ÓID
+			Element root = document.getRootElement();// è·å¾—æ ¹èŠ‚ç‚¹
+			_default = root.getAttributeValue("default");// è·å–é»˜è®¤æ•°æ®åº“è¿æ¥ID
 
 			List<Element> list = root.getChildren("bean");
 			for (Iterator<Element> it = list.iterator(); it.hasNext();) {
@@ -62,9 +62,9 @@ public class DataSourceTools {
 				dataSourceMap.put(beanId, ds);
 			}
 		} catch (JDOMException e) {
-			logger.error("Êı¾İ¿âÎÄ¼ş½Úµã¶ÁÈ¡Òì³££º" + e);
+			logger.error("æ•°æ®åº“æ–‡ä»¶èŠ‚ç‚¹è¯»å–å¼‚å¸¸ï¼š" + e);
 		} catch (IOException e) {
-			logger.error("Êı¾İ¿âÎÄ¼ş¶ÁÈ¡Òì³££º" + e);
+			logger.error("æ•°æ®åº“æ–‡ä»¶è¯»å–å¼‚å¸¸ï¼š" + e);
 		}
 	}
 
@@ -73,9 +73,9 @@ public class DataSourceTools {
 	}
 
 	/**
-	 * @desc ´´½¨C3P0Êı¾İÔ´
+	 * @desc åˆ›å»ºC3P0æ•°æ®æº
 	 * @author zhangdq
-	 * @time 2017-4-9 ÏÂÎç7:50:54
+	 * @time 2017-4-9 ä¸‹åˆ7:50:54
 	 * @param Map
 	 * @return DataSource
 	 */
@@ -93,23 +93,23 @@ public class DataSourceTools {
 		try {
 			Class.forName(driverName);
 
-			// ²»´øÁ¬½Ó³ØµÄDataSource
+			// ä¸å¸¦è¿æ¥æ± çš„DataSource
 			DataSource unpooled = DataSources.unpooledDataSource(url, user, password);
 
-			// ÓÉ²»´øÁ¬½Ó³ØµÄDataSource´´½¨´øÁ¬½Ó³ØµÄDataSource
+			// ç”±ä¸å¸¦è¿æ¥æ± çš„DataSourceåˆ›å»ºå¸¦è¿æ¥æ± çš„DataSource
 			DataSource pooled = DataSources.pooledDataSource(unpooled, paramMap);
 
 			return pooled;
 		} catch (Exception e) {
-			logger.error("´´½¨C3P0Êı¾İÔ´Òì³££º" + e);
+			logger.error("åˆ›å»ºC3P0æ•°æ®æºå¼‚å¸¸ï¼š" + e);
 		}
 		return null;
 	}
 
 	/**
-	 * @desc »ñÈ¡Ä¬ÈÏµÄÊı¾İ¿âÁ¬½Ó
+	 * @desc è·å–é»˜è®¤çš„æ•°æ®åº“è¿æ¥
 	 * @author zhangdq
-	 * @time 2017-5-1 ÏÂÎç7:15:48
+	 * @time 2017-5-1 ä¸‹åˆ7:15:48
 	 * @param
 	 * @return DataSource
 	 */
@@ -130,10 +130,10 @@ public class DataSourceTools {
 	}
 
 	/**
-	 * @desc »ñÈ¡Ö¸¶¨µÄÊı¾İ¿âÁ¬½Ó
+	 * @desc è·å–æŒ‡å®šçš„æ•°æ®åº“è¿æ¥
 	 * @author zhangdq
-	 * @time 2017-5-1 ÏÂÎç7:14:53
-	 * @param id Ö¸¶¨Êı¾İ¿âID
+	 * @time 2017-5-1 ä¸‹åˆ7:14:53
+	 * @param id æŒ‡å®šæ•°æ®åº“ID
 	 * @return DataSource
 	 */
 	public DataSource getDataSource(String id) {
@@ -145,9 +145,9 @@ public class DataSourceTools {
 	}
 
 	/**
-	 * @desc »ñÈ¡Ö¸¶¨Êı¾İ¿âÁ¬½ÓÅäÖÃ
+	 * @desc è·å–æŒ‡å®šæ•°æ®åº“è¿æ¥é…ç½®
 	 * @author zhangdq
-	 * @time 2017.5.2 ÏÂÎç23:35:00
+	 * @time 2017.5.2 ä¸‹åˆ23:35:00
 	 * @param id
 	 * @return
 	 */

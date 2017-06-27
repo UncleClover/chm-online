@@ -3,12 +3,12 @@ package com.clover.base.jdbc;
 import java.util.List;
 
 /**
- * @desc Êı¾İ¿â²éÑ¯·ÖÒ³¹¤¾ßÀà
+ * @desc æ•°æ®åº“æŸ¥è¯¢åˆ†é¡µå·¥å…·ç±»
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-6-5 ÏÂÎç5:44:19
+ * @date 2017-6-5 ä¸‹åˆ5:44:19
  */
 public class DBPage {
 	public static final int NUMBERS_PER_PAGE = 10;
@@ -26,7 +26,7 @@ public class DBPage {
 	private String buttonType = "";
 
 	/**
-	 * @desc ¹¹Ôì·½·¨
+	 * @desc æ„é€ æ–¹æ³•
 	 * @author zhangdq
 	 * @param currentPage
 	 * @param numPerPage
@@ -37,10 +37,10 @@ public class DBPage {
 	}
 
 	/**
-	 * @desc ÉèÖÃ·ÖÒ³×ÜĞĞÊı
+	 * @desc è®¾ç½®åˆ†é¡µæ€»è¡Œæ•°
 	 * @author zhangdq
-	 * @time 2017-6-5 ÏÂÎç5:47:19
-	 * @param totalRows ·ÖÒ³×ÜĞĞÊı
+	 * @time 2017-6-5 ä¸‹åˆ5:47:19
+	 * @param totalRows åˆ†é¡µæ€»è¡Œæ•°
 	 */
 	public void setTotalRows(int totalRows) {
 		this.totalRows = totalRows;
@@ -78,9 +78,9 @@ public class DBPage {
 	}
 
 	/**
-	 * @desc ¼ÆËã×Ü¹²¿ÉÒÔ·Ö³É¼¸Ò³
+	 * @desc è®¡ç®—æ€»å…±å¯ä»¥åˆ†æˆå‡ é¡µ
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç1:02:50
+	 * @time 2017-6-6 ä¸‹åˆ1:02:50
 	 * @param 
 	 * @return
 	 */
@@ -93,9 +93,9 @@ public class DBPage {
 	}
 
 	/**
-	 * @desc ¼ÆËã·ÖÒ³²éÑ¯µÄÆğÊ¼Ò³Êı
+	 * @desc è®¡ç®—åˆ†é¡µæŸ¥è¯¢çš„èµ·å§‹é¡µæ•°
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç1:03:22
+	 * @time 2017-6-6 ä¸‹åˆ1:03:22
 	 * @param 
 	 * @return
 	 */
@@ -104,9 +104,9 @@ public class DBPage {
 	}
 
 	/**
-	 * @desc ¼ÆËã·ÖÒ³²éÑ¯µÄ½áÊøÒ³Êı
+	 * @desc è®¡ç®—åˆ†é¡µæŸ¥è¯¢çš„ç»“æŸé¡µæ•°
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç1:08:34
+	 * @time 2017-6-6 ä¸‹åˆ1:08:34
 	 * @param 
 	 * @return
 	 */
@@ -207,7 +207,7 @@ public class DBPage {
 		int pages = this.totalPages;
 		int total = this.totalRows;
 
-		linkStr = linkStr + "¹² <b>" + total + "</b> Ìõ&nbsp;µ±Ç° <b>" + pageNumber + "</b>/<b>" + pages + "</b> Ò³&nbsp;&nbsp;";
+		linkStr = linkStr + "å…± <b>" + total + "</b> æ¡&nbsp;å½“å‰ <b>" + pageNumber + "</b>/<b>" + pages + "</b> é¡µ&nbsp;&nbsp;";
 
 		if (url.indexOf("?") > 0) {
 			url = url + "&";
@@ -215,14 +215,14 @@ public class DBPage {
 			url = url + "?";
 		}
 		if ((pageNumber == 1) && (pageNumber < pages)) {
-			linkStr = linkStr + "Ê×Ò³&nbsp;ÉÏÒ»Ò³&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber + 1) + "'>ÏÂÒ»Ò³</a>&nbsp;<a href='" + url + "&pageNumber=" + pages + "'>Î²Ò³</a>&nbsp;Ìøµ½<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>Ò³&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\"  style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
+			linkStr = linkStr + "é¦–é¡µ&nbsp;ä¸Šä¸€é¡µ&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber + 1) + "'>ä¸‹ä¸€é¡µ</a>&nbsp;<a href='" + url + "&pageNumber=" + pages + "'>å°¾é¡µ</a>&nbsp;è·³åˆ°<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>é¡µ&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\"  style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
 		} else if ((pageNumber > 1) && (pageNumber < pages)) {
-			linkStr = linkStr + "<a href='" + url + "&pageNumber=1'>Ê×Ò³</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber - 1) + "'>ÉÏÒ»Ò³</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber + 1) + "'>ÏÂÒ»Ò³&nbsp;<a href='" + url + "&pageNumber=" + pages + "'>Î²Ò³</a>&nbsp;Ìøµ½<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>Ò³&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\"  style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
+			linkStr = linkStr + "<a href='" + url + "&pageNumber=1'>é¦–é¡µ</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber - 1) + "'>ä¸Šä¸€é¡µ</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber + 1) + "'>ä¸‹ä¸€é¡µ&nbsp;<a href='" + url + "&pageNumber=" + pages + "'>å°¾é¡µ</a>&nbsp;è·³åˆ°<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>é¡µ&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\"  style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
 		} else if ((pageNumber == pages) && (pages > 1)) {
-			linkStr = linkStr + "<a href='" + url + "&pageNumber=1'>Ê×Ò³</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber - 1) + "'>ÉÏÒ»Ò³</a>&nbsp;ÏÂÒ»Ò³&nbsp;Î²Ò³&nbsp;Ìøµ½<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>Ò³&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\" style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
+			linkStr = linkStr + "<a href='" + url + "&pageNumber=1'>é¦–é¡µ</a>&nbsp;<a href='" + url + "&pageNumber=" + (pageNumber - 1) + "'>ä¸Šä¸€é¡µ</a>&nbsp;ä¸‹ä¸€é¡µ&nbsp;å°¾é¡µ&nbsp;è·³åˆ°<input type=text name=jump id=jump size=3 style=\"text-align:center\" value='" + pageNumber + "'>é¡µ&nbsp;<img border=\"0\" src=\"" + path + "/images/button020.gif\" width=\"20\" height=\"18\" style=\"cursor:hand;\" onclick=\"javascript:checkPage();\">";
 		}
 
-		scriptTmp = scriptTmp + "<SCRIPT LANGUAGE=\"JavaScript\">\n<!--\nfunction checkPage()\n {\n if(document.getElementById(\"jump\").value > " + pages + ") {\n alert('ÄúÊäÈëµÄÒ³Âë³¬³ö·¶Î§£¬ÇëÖØĞÂÊäÈë£¡');\n document.getElementById('jump').focus();\n return false;\n} else if(document.getElementById('jump').value < 1) {\n alert('ÄúÊäÈëµÄÒ³Âë³¬³ö·¶Î§£¬ÇëÖØĞÂÊäÈë£¡');\n document.getElementById('jump').focus();\n return false;\n} else {\n jumpTo('" + url + "');\n}\n}\n//-->\n</SCRIPT>";
+		scriptTmp = scriptTmp + "<SCRIPT LANGUAGE=\"JavaScript\">\n<!--\nfunction checkPage()\n {\n if(document.getElementById(\"jump\").value > " + pages + ") {\n alert('æ‚¨è¾“å…¥çš„é¡µç è¶…å‡ºèŒƒå›´ï¼Œè¯·é‡æ–°è¾“å…¥ï¼');\n document.getElementById('jump').focus();\n return false;\n} else if(document.getElementById('jump').value < 1) {\n alert('æ‚¨è¾“å…¥çš„é¡µç è¶…å‡ºèŒƒå›´ï¼Œè¯·é‡æ–°è¾“å…¥ï¼');\n document.getElementById('jump').focus();\n return false;\n} else {\n jumpTo('" + url + "');\n}\n}\n//-->\n</SCRIPT>";
 
 		scriptTmp = scriptTmp + "<SCRIPT LANGUAGE=\"JavaScript\">\n<!--\nfunction jumpTo(url)\n {\n self.location.href=\"" + url + "&pageNumber=\"+" + "document.getElementById(\"jump\").value;\n}\n//-->\n</SCRIPT>";
 

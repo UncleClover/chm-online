@@ -1,12 +1,12 @@
 package com.clover.base.jdbc;
 
 /**
- * Êı¾İ¿âÀàĞÍ
+ * æ•°æ®åº“ç±»å‹
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-6-13 ÉÏÎç9:57:52
+ * @date 2017-6-13 ä¸Šåˆ9:57:52
  */
 public final class DatabaseType {
 	

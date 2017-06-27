@@ -13,12 +13,12 @@ import com.clover.base.jdbc.session.impl.SessionImpl;
 import com.clover.base.utils.StringUtils;
 
 /**
- * »ñÈ¡ĞòÁĞÖµ
+ * è·å–åºåˆ—å€¼
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-6-11 ÏÂÎç10:06:57
+ * @date 2017-6-11 ä¸‹åˆ10:06:57
  */
 public class SequenceGenerator {
 	
@@ -27,9 +27,9 @@ public class SequenceGenerator {
 	public static SequenceGenerator instance = new SequenceGenerator();
 
 	/**
-	 * »ñÈ¡SequenceGeneratorÀàµÄµ¥Àı
+	 * è·å–SequenceGeneratorç±»çš„å•ä¾‹
 	 * @author zhangdq
-	 * @date 2017-6-11 ÏÂÎç10:07:39
+	 * @date 2017-6-11 ä¸‹åˆ10:07:39
 	 * @return SequenceGenerator
 	 */
 	public static SequenceGenerator getInstance() {
@@ -37,10 +37,10 @@ public class SequenceGenerator {
 	}
 	
 	/**
-	 * »ñÈ¡ĞòÁĞµÄÏÂÒ»¸öÖµ
+	 * è·å–åºåˆ—çš„ä¸‹ä¸€ä¸ªå€¼
 	 * @author zhangdq
-	 * @date 2017-6-13 ÉÏÎç9:52:33
-	 * @param name ĞòÁĞÃû×Ö(Ä¬ÈÏseq_±íÃû)
+	 * @date 2017-6-13 ä¸Šåˆ9:52:33
+	 * @param name åºåˆ—åå­—(é»˜è®¤seq_è¡¨å)
 	 * @return String
 	 */
 	public String getNextSequence(String name){
@@ -48,11 +48,11 @@ public class SequenceGenerator {
 		return getNextSequence(conn, name);
 	}
 	/**
-	 * »ñÈ¡ĞòÁĞÏÂÒ»¸öÖµ
+	 * è·å–åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 * @author zhangdq
-	 * @date 2017-6-11 ÏÂÎç10:09:03
-	 * @param id Êı¾İ¿âÅäÖÃID
-	 * @param name ĞòÁĞÃû×Ö(Ä¬ÈÏseq_±íÃû)
+	 * @date 2017-6-11 ä¸‹åˆ10:09:03
+	 * @param id æ•°æ®åº“é…ç½®ID
+	 * @param name åºåˆ—åå­—(é»˜è®¤seq_è¡¨å)
 	 * @return
 	 */
 	public String getNextSequence(String id, String name){
@@ -61,11 +61,11 @@ public class SequenceGenerator {
 	}
 	
 	/**
-	 * »ñÈ¡ĞòÁĞÏÂÒ»¸öÖµ
+	 * è·å–åºåˆ—ä¸‹ä¸€ä¸ªå€¼
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:34:21
-	 * @param Connection Êı¾İ¿âÁ¬½Ó
-	 * @param name ĞòÁĞÃû×Ö(Ä¬ÈÏseq_±íÃû)
+	 * @date 2017-6-13 ä¸‹åˆ5:34:21
+	 * @param Connection æ•°æ®åº“è¿æ¥
+	 * @param name åºåˆ—åå­—(é»˜è®¤seq_è¡¨å)
 	 * @return
 	 */
 	private String getNextSequence(Connection conn, String name) {
@@ -85,13 +85,13 @@ public class SequenceGenerator {
 				if (result != null && result.next()) {
 					nextVal = result.getString("nextval");
 				} else {
-					throw new SQLException("»ñÈ¡OracleĞòÁĞÊ§°Ü~");
+					throw new SQLException("è·å–Oracleåºåˆ—å¤±è´¥~");
 				}
 				ConnTools.commitTrans(conn);
 			} catch (SQLException e) {
-				// oracle SQLÒì³£´úÂë£º2289-ĞòÁĞ²»´æÔÚ
+				// oracle SQLå¼‚å¸¸ä»£ç ï¼š2289-åºåˆ—ä¸å­˜åœ¨
 				if (e.getErrorCode() == ChmConstants.SEQUENCE_NOT_EXISTS) {
-					// ´´½¨ĞòÁĞ
+					// åˆ›å»ºåºåˆ—
 					createSequence(conn, seqName);
 					ConnTools.commitTrans(conn);
 					return "1";
@@ -106,10 +106,10 @@ public class SequenceGenerator {
 	}
 
 	/**
-	 * »ñÈ¡Êı¾İ¿âÁ¬½ÓµÄÀàĞÍ£¬Ä¬ÈÏÊÇOracleÊı¾İ¿â
+	 * è·å–æ•°æ®åº“è¿æ¥çš„ç±»å‹ï¼Œé»˜è®¤æ˜¯Oracleæ•°æ®åº“
 	 * @author zhangdq
-	 * @date 2017-6-13 ÉÏÎç10:45:20
-	 * @param Connection Êı¾İ¿âÁ¬½Ó
+	 * @date 2017-6-13 ä¸Šåˆ10:45:20
+	 * @param Connection æ•°æ®åº“è¿æ¥
 	 * @return int
 	 */
 	public int getDatabaseType(Connection conn){
@@ -120,22 +120,22 @@ public class SequenceGenerator {
 	        }else if(databaseTypeStr.equalsIgnoreCase("MySQL")){
 	        	return DatabaseType.MYSQL;
 	        }else{
-	        	throw new Exception("Ôİ²»Ö§³Ö¸ÃÊı¾İ¿â£¡<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
+	        	throw new Exception("æš‚ä¸æ”¯æŒè¯¥æ•°æ®åº“ï¼<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
 	        }
         } catch (Exception e) {
-        	logger.error("»ñÈ¡Êı¾İ¿âÁ¬½ÓµÄÀàĞÍÒì³£~");
+        	logger.error("è·å–æ•°æ®åº“è¿æ¥çš„ç±»å‹å¼‚å¸¸~");
 	        e.printStackTrace();
         }
-		logger.error("²éÑ¯Êı¾İ²úÉÌÊ§°Ü~Ä¬ÈÏ·µ»ØOracleÊı¾İ¿âÀàĞÍ");
+		logger.error("æŸ¥è¯¢æ•°æ®äº§å•†å¤±è´¥~é»˜è®¤è¿”å›Oracleæ•°æ®åº“ç±»å‹");
 		return DatabaseType.ORACLE;
 	}
 	
 	/**
-	 * ¸ù¾İÊı¾İ¿â±íÃû»ñÈ¡ĞòÁĞÃû×Ö
+	 * æ ¹æ®æ•°æ®åº“è¡¨åè·å–åºåˆ—åå­—
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:40:32
-	 * @param tableName ±íÃû
-	 * @return String ĞòÁĞÃû
+	 * @date 2017-6-13 ä¸‹åˆ5:40:32
+	 * @param tableName è¡¨å
+	 * @return String åºåˆ—å
 	 */
 	public static String getSeqNameByTableName(String tableName) {
 		String seqName = "";
@@ -151,11 +151,11 @@ public class SequenceGenerator {
 	}
 
 	/**
-	 * ´´½¨OracleĞòÁĞ
+	 * åˆ›å»ºOracleåºåˆ—
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç5:51:35
-	 * @param Connection Êı¾İ¿âĞòÁĞ
-	 * @param seqName ĞòÁĞÃû×Ö
+	 * @date 2017-6-13 ä¸‹åˆ5:51:35
+	 * @param Connection æ•°æ®åº“åºåˆ—
+	 * @param seqName åºåˆ—åå­—
 	 * @return
 	 */
 	private void createSequence(Connection conn, String seqName) {
@@ -171,7 +171,7 @@ public class SequenceGenerator {
 			psmt = conn.prepareStatement(sb.toString());
 			psmt.executeUpdate();
 		} catch (SQLException e) {
-			logger.error("´´½¨OracleĞòÁĞÒì³£~");
+			logger.error("åˆ›å»ºOracleåºåˆ—å¼‚å¸¸~");
 			e.printStackTrace();
 		} finally {
 			closeStatment(psmt);
@@ -179,9 +179,9 @@ public class SequenceGenerator {
 	}
 	
 	/**
-	 * ¹Ø±ÕÔ¤±àÒë¶ÔÏó
+	 * å…³é—­é¢„ç¼–è¯‘å¯¹è±¡
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç6:01:38
+	 * @date 2017-6-13 ä¸‹åˆ6:01:38
 	 * @param Statement
 	 * @return
 	 */
@@ -191,16 +191,16 @@ public class SequenceGenerator {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			logger.error("¹Ø±ÕÔ¤±àÒë¶ÔÏóÒì³£~");
+			logger.error("å…³é—­é¢„ç¼–è¯‘å¯¹è±¡å¼‚å¸¸~");
 			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * ¹Ø±ÕÊı¾İ¿â½á¹û¼¯
+	 * å…³é—­æ•°æ®åº“ç»“æœé›†
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç6:04:11
-	 * @param ResultSet ½á¹û¼¯¶ÔÏó
+	 * @date 2017-6-13 ä¸‹åˆ6:04:11
+	 * @param ResultSet ç»“æœé›†å¯¹è±¡
 	 * @return
 	 */
 	private static void closeResult(ResultSet rs) {
@@ -209,7 +209,7 @@ public class SequenceGenerator {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			logger.error("Êı¾İ¿â½á¹û¼¯¹Ø±ÕÒì³£~");
+			logger.error("æ•°æ®åº“ç»“æœé›†å…³é—­å¼‚å¸¸~");
 			e.printStackTrace();
 		}
 	}

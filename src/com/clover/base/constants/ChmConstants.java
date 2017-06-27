@@ -2,7 +2,7 @@ package com.clover.base.constants;
 
 public class ChmConstants {
 	/**
-	 * Êı¾İ¿âÅäÖÃÎÄ¼ş-datasource.xml
+	 * æ•°æ®åº“é…ç½®æ–‡ä»¶-datasource.xml
 	 * @author zhangdq
 	 * @time 2017-04-09 17:40
 	 * @value datasource.xml
@@ -10,7 +10,7 @@ public class ChmConstants {
 	public final static String DATASOURCE_FILE_NAME = "datasource.xml";
 	
 	/**
-	 * Êı¾İ¿âÒì³£´úÂë£¬ĞòÁĞ²»´æÔÚ-2289
+	 * æ•°æ®åº“å¼‚å¸¸ä»£ç ï¼Œåºåˆ—ä¸å­˜åœ¨-2289
 	 * @author zhangdq
 	 * @time 2017-06-13 18:12
 	 * @value 2289

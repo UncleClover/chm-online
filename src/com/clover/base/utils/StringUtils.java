@@ -1,20 +1,20 @@
 package com.clover.base.utils;
 
 /**
- * @desc ×Ö·û´®¹¤¾ßÀà
+ * @desc å­—ç¬¦ä¸²å·¥å…·ç±»
  * @copyright Copyright (c) 2017
  * @company clover
  * @version V1.0
  * @author qiang900714@126.com
- * @date 2017-5-1 ÏÂÎç7:59:51
+ * @date 2017-5-1 ä¸‹åˆ7:59:51
  */
 public class StringUtils {
 	
 	/**
-	 * @desc ÅĞ¶Ï×Ö·û´®ÊÇ²»ÊÇÎª¿Õ
+	 * @desc åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯ä¸æ˜¯ä¸ºç©º
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç12:58:27
-	 * @param param ĞèÒªÅĞ¶ÏµÄ×Ö·û´®
+	 * @time 2017-6-6 ä¸‹åˆ12:58:27
+	 * @param param éœ€è¦åˆ¤æ–­çš„å­—ç¬¦ä¸²
 	 * @return boolean
 	 */
 	public static boolean isEmpty(String param) {
@@ -22,10 +22,10 @@ public class StringUtils {
 	}
 
 	/**
-	 * @desc ÅĞ¶Ï×Ö·û´®ÊÇ²»ÊÇ·Ç¿Õ
+	 * @desc åˆ¤æ–­å­—ç¬¦ä¸²æ˜¯ä¸æ˜¯éç©º
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç12:59:01
-	 * @param param ĞèÒªÅĞ¶ÏµÄ×Ö·û´®
+	 * @time 2017-6-6 ä¸‹åˆ12:59:01
+	 * @param param éœ€è¦åˆ¤æ–­çš„å­—ç¬¦ä¸²
 	 * @return boolean
 	 */
 	public static boolean isNotEmpty(String param) {
@@ -34,11 +34,11 @@ public class StringUtils {
 	
 	
 	/**
-	 * @desc Éú²úÒ»¸ö×Ö·ûÒ»ÖÂµÄ×Ö·û´®
+	 * @desc ç”Ÿäº§ä¸€ä¸ªå­—ç¬¦ä¸€è‡´çš„å­—ç¬¦ä¸²
 	 * @author zhangdq
-	 * @time 2017-6-6 ÏÂÎç12:59:35
-	 * @param args ĞèÒªÉú²úµÄ×Ö·û´®
-	 * @param length ĞèÒªÉú³ÉµÄ³¤¶È
+	 * @time 2017-6-6 ä¸‹åˆ12:59:35
+	 * @param args éœ€è¦ç”Ÿäº§çš„å­—ç¬¦ä¸²
+	 * @param length éœ€è¦ç”Ÿæˆçš„é•¿åº¦
 	 * @return String
 	 */
 	public static String createSpecifiedString(String args, int length) {

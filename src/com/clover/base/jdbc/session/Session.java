@@ -7,350 +7,350 @@ import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
 
 /**
- * Êı¾İ¿âÁ¬½Ó»á»°²Ù×÷½Ó¿Ú
+ * æ•°æ®åº“è¿æ¥ä¼šè¯æ“ä½œæ¥å£
  * @author zhangdq
  */
 public abstract interface Session {
 	/**
-	 * »ñÈ¡Êı¾İ¿âÁ¬½Ó
+	 * è·å–æ•°æ®åº“è¿æ¥
 	 * @author zhangdq
 	 * @return Connection
 	 */
 	public abstract Connection connection();
 
 	/**
-	 * ²åÈë±í
-	 * @param tbName ±íÃû
-	 * @param DataRow ²åÈëµÄÁĞ
+	 * æ’å…¥è¡¨
+	 * @param tbName è¡¨å
+	 * @param DataRow æ’å…¥çš„åˆ—
 	 * @return int
 	 */
 	public abstract int insert(String tbName, DataRow data);
 
 	/**
-	 * ¸ù¾İÌõ¼şÉ¾³ı±íÊı¾İ
+	 * æ ¹æ®æ¡ä»¶åˆ é™¤è¡¨æ•°æ®
 	 * @author zhangdq
-	 * @param tbName ±íÃû
-	 * @param identify É¾³ıÌõ¼şµÄÁĞÃû
-	 * @param identifyValue É¾³ıÌõ¼şµÄÖµ
+	 * @param tbName è¡¨å
+	 * @param identify åˆ é™¤æ¡ä»¶çš„åˆ—å
+	 * @param identifyValue åˆ é™¤æ¡ä»¶çš„å€¼
 	 * @return int
 	 */
 	public abstract int delete(String tbName, String identify, Object identifyValue);
 
 	/**
-	 * ¸ù¾İSQLºÍÌõ¼şÉ¾³ı±íÊı¾İ(¿ÉÖ±½Óµ÷ÓÃupdate·½·¨)
+	 * æ ¹æ®SQLå’Œæ¡ä»¶åˆ é™¤è¡¨æ•°æ®(å¯ç›´æ¥è°ƒç”¨updateæ–¹æ³•)
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç3:12:25
-	 * @param SQL É¾³ıSQLÓï¾ä
-	 * @param args É¾³ı²ÎÊı
+	 * @date 2017-6-2 ä¸‹åˆ3:12:25
+	 * @param SQL åˆ é™¤SQLè¯­å¥
+	 * @param args åˆ é™¤å‚æ•°
 	 * @return int
 	 */
 	public abstract int delete(String sql, Object[] args);
 
 	/**
-	 * ¸üĞÂ±íÊı¾İ
+	 * æ›´æ–°è¡¨æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç6:09:43
+	 * @date 2017-6-2 ä¸‹åˆ6:09:43
 	 * @param
 	 * @return
 	 */
 	public abstract int update(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş¸üĞÂ±íÊı¾İ
+	 * æ ¹æ®æ¡ä»¶æ›´æ–°è¡¨æ•°æ®
 	 * @author zhangdq
-	 * @param sql ¸üĞÂSQLÓï¾ä
-	 * @param args ²ÎÊı
+	 * @param sql æ›´æ–°SQLè¯­å¥
+	 * @param args å‚æ•°
 	 * @return int
 	 */
 	public abstract int update(String sql, Object[] args);
 
 	/**
-	 * ¸ù¾İ±íÃûºÍÒ»¶¨µÄÌõ¼ş¸üĞÂÄ³Ğ©ÁĞÊı¾İ
+	 * æ ¹æ®è¡¨åå’Œä¸€å®šçš„æ¡ä»¶æ›´æ–°æŸäº›åˆ—æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç6:15:54
-	 * @param tbName ±íÃû
-	 * @param data ÁĞÊı¾İ
-	 * @param identify ¸üĞÂÌõ¼şÁĞÃû
-	 * @param identifyValue ¸üĞÂÌõ¼şÖµ
+	 * @date 2017-6-2 ä¸‹åˆ6:15:54
+	 * @param tbName è¡¨å
+	 * @param data åˆ—æ•°æ®
+	 * @param identify æ›´æ–°æ¡ä»¶åˆ—å
+	 * @param identifyValue æ›´æ–°æ¡ä»¶å€¼
 	 * @return int
 	 */
 	public abstract int update(String tbName, DataRow data, String identify, Object identifyValue);
 
 	/**
-	 * ¸ù¾İ±íÃûºÍÒ»¶¨µÄÌõ¼ş¸üĞÂÄ³Ğ©ÁĞÊı¾İ
+	 * æ ¹æ®è¡¨åå’Œä¸€å®šçš„æ¡ä»¶æ›´æ–°æŸäº›åˆ—æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç6:15:54
-	 * @param tbName ±íÃû
-	 * @param data ÁĞÊı¾İ
-	 * @param identifys ¸üĞÂÌõ¼şÁĞÃû
-	 * @param identifyValues ¸üĞÂÌõ¼şÖµ
+	 * @date 2017-6-2 ä¸‹åˆ6:15:54
+	 * @param tbName è¡¨å
+	 * @param data åˆ—æ•°æ®
+	 * @param identifys æ›´æ–°æ¡ä»¶åˆ—å
+	 * @param identifyValues æ›´æ–°æ¡ä»¶å€¼
 	 * @return int
 	 */
 	public abstract int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues);
 
 	/**
-	 * Åú¸üĞÂÊı¾İ
+	 * æ‰¹æ›´æ–°æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-6 ÏÂÎç4:44:44
-	 * @param sql ¸üĞÂSQLµÄÊı×é
+	 * @date 2017-6-6 ä¸‹åˆ4:44:44
+	 * @param sql æ›´æ–°SQLçš„æ•°ç»„
 	 * @return int[]
 	 */
 	public abstract int[] batchUpdate(String[] sql);
 	
 	/**
-	 * ¸ù¾İÌõ¼şÅú¸üĞÂÊı¾İ
+	 * æ ¹æ®æ¡ä»¶æ‰¹æ›´æ–°æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-6 ÏÂÎç4:45:14
-	 * @param sql ¸üĞÂSQL
-	 * @param args ²éÑ¯Ìõ¼şµÄ¶şÎ¬Êı×é
+	 * @date 2017-6-6 ä¸‹åˆ4:45:14
+	 * @param sql æ›´æ–°SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶çš„äºŒç»´æ•°ç»„
 	 * @return int[]
 	 */
 	public abstract int[] batchUpdate(String sql, Object[][] args);
 	
 	/**
-	 * ²éÑ¯Êı¾İ
+	 * æŸ¥è¯¢æ•°æ®
 	 * @author zhangdq
-	 * @param sql ²éÑ¯SQL
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql);
 
 	/**
-	 * ²éÑ¯Êı¾İ
+	 * æŸ¥è¯¢æ•°æ®
 	 * @author zhangdq
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯²ÎÊı
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢å‚æ•°
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯Êı¾İÇ°¼¸ĞĞ
+	 * æŸ¥è¯¢æ•°æ®å‰å‡ è¡Œ
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç4:10:08
-	 * @param SQL ²éÑ¯SQL
-	 * @param rows ²éÑ¯ĞĞÊı
+	 * @date 2017-6-2 ä¸‹åˆ4:10:08
+	 * @param SQL æŸ¥è¯¢SQL
+	 * @param rows æŸ¥è¯¢è¡Œæ•°
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, int rows);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯Êı¾İÇ°¼¸ĞĞ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢æ•°æ®å‰å‡ è¡Œ
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç4:17:45
+	 * @date 2017-6-2 ä¸‹åˆ4:17:45
 	 * @param
 	 * @return
 	 */
 	public abstract List<DataRow> query(String sql, Object[] args, int rows);
 
 	/**
-	 * ´ÓÄ³Ò»ĞĞ¿ªÊ¼²éÑ¯Ò»¶¨ĞĞÊıµÄÊı¾İ
+	 * ä»æŸä¸€è¡Œå¼€å§‹æŸ¥è¯¢ä¸€å®šè¡Œæ•°çš„æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç4:12:42
-	 * @param SQL ²éÑ¯SQL
-	 * @param startRows ¿ªÊ¼²éÑ¯Î»ÖÃ
-	 * @param rows ²éÑ¯ĞĞÊı
+	 * @date 2017-6-2 ä¸‹åˆ4:12:42
+	 * @param SQL æŸ¥è¯¢SQL
+	 * @param startRows å¼€å§‹æŸ¥è¯¢ä½ç½®
+	 * @param rows æŸ¥è¯¢è¡Œæ•°
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, int startRows, int rows);
 
 	/**
-	 * ¸ù¾İÌõ¼ş´ÓÄ³Ò»ĞĞ¿ªÊ¼²éÑ¯Ò»¶¨ĞĞÊıµÄÊı¾İ
+	 * æ ¹æ®æ¡ä»¶ä»æŸä¸€è¡Œå¼€å§‹æŸ¥è¯¢ä¸€å®šè¡Œæ•°çš„æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-2 ÏÂÎç4:13:49
-	 * @param SQL ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
-	 * @param startRows ¿ªÊ¼²éÑ¯Î»ÖÃ
-	 * @param rows ²éÑ¯ĞĞÊı
+	 * @date 2017-6-2 ä¸‹åˆ4:13:49
+	 * @param SQL æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
+	 * @param startRows å¼€å§‹æŸ¥è¯¢ä½ç½®
+	 * @param rows æŸ¥è¯¢è¡Œæ•°
 	 * @return List<DataRow>
 	 */
 	public abstract List<DataRow> query(String sql, Object[] args, int startRows, int rows);
 
 	/**
-	 * ²éÑ¯intÀàĞÍÊı¾İ
+	 * æŸ¥è¯¢intç±»å‹æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:52:37
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ5:52:37
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return int
 	 */
 	public abstract int queryInt(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯intÀàĞÍÊı¾İ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢intç±»å‹æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:53:13
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ5:53:13
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return int
 	 */
 	public abstract int queryInt(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯intÊı×é
+	 * æŸ¥è¯¢intæ•°ç»„
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:53:33
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ5:53:33
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return int[]
 	 */
 	public abstract int[] queryIntArray(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯intÊı×é
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢intæ•°ç»„
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:53:56
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ5:53:56
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return int[]
 	 */
 	public abstract int[] queryIntArray(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯longÀàĞÍÊı¾İ
+	 * æŸ¥è¯¢longç±»å‹æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:57:47
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ5:57:47
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return long
 	 */
 	public abstract long queryLong(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯²éÑ¯longÀàĞÍÊı¾İ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢æŸ¥è¯¢longç±»å‹æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:58:17
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ5:58:17
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return long
 	 */
 	public abstract long queryLong(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯longÊı×éÊı¾İ
+	 * æŸ¥è¯¢longæ•°ç»„æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:58:59
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ5:58:59
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return long[]
 	 */
 	public abstract long[] queryLongArray(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯longÊı×éÊı¾İ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢longæ•°ç»„æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç5:59:29
+	 * @date 2017-6-5 ä¸‹åˆ5:59:29
 	 * @param sql
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return
 	 */
 	public abstract long[] queryLongArray(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯StringÀàĞÍÊı¾İ
+	 * æŸ¥è¯¢Stringç±»å‹æ•°æ®
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:02:39
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ6:02:39
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return String
 	 */
 	public abstract String queryString(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯StringÀàĞÍ
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢Stringç±»å‹
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:03:09
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ6:03:09
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return String
 	 */
 	public abstract String queryString(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯StringÊı×é
+	 * æŸ¥è¯¢Stringæ•°ç»„
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:03:58
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ6:03:58
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return String[]
 	 */
 	public abstract String[] queryStringArray(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯StringÊı×é
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢Stringæ•°ç»„
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:04:03
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ6:04:03
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return String[]
 	 */
 	public abstract String[] queryStringArray(String sql, Object[] args);
 
 	/**
-	 * ²éÑ¯Ò»ÌõÊı¾İ(DataRow)
+	 * æŸ¥è¯¢ä¸€æ¡æ•°æ®(DataRow)
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:04:12
-	 * @param sql ²éÑ¯SQL
+	 * @date 2017-6-5 ä¸‹åˆ6:04:12
+	 * @param sql æŸ¥è¯¢SQL
 	 * @return DataRow
 	 */
 	public abstract DataRow queryMap(String sql);
 
 	/**
-	 * ¸ù¾İÌõ¼ş²éÑ¯Ò»ÌõÊı¾İ(DataRow)
+	 * æ ¹æ®æ¡ä»¶æŸ¥è¯¢ä¸€æ¡æ•°æ®(DataRow)
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:04:16
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
+	 * @date 2017-6-5 ä¸‹åˆ6:04:16
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
 	 * @return DataRow
 	 */
 	public abstract DataRow queryMap(String sql, Object[] args);
 
 	/**
-	 * Êı¾İ·ÖÒ³²éÑ¯
+	 * æ•°æ®åˆ†é¡µæŸ¥è¯¢
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:04:24
-	 * @param sql ²éÑ¯SQL
-	 * @param curPage µ±Ç°Ò³Êı
-	 * @param numPerPage Ã¿Ò³ÏÔÊ¾Êı¾İÌõÊı
+	 * @date 2017-6-5 ä¸‹åˆ6:04:24
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param curPage å½“å‰é¡µæ•°
+	 * @param numPerPage æ¯é¡µæ˜¾ç¤ºæ•°æ®æ¡æ•°
 	 * @return DBPage
 	 */
 	public abstract DBPage queryPage(String sql, int curPage, int numPerPage);
 
 	/**
-	 * ¸ù¾İÌõ¼ş·ÖÒ³²éÑ¯
+	 * æ ¹æ®æ¡ä»¶åˆ†é¡µæŸ¥è¯¢
 	 * @author zhangdq
-	 * @date 2017-6-5 ÏÂÎç6:04:27
-	 * @param sql ²éÑ¯SQL
-	 * @param args ²éÑ¯Ìõ¼ş²ÎÊı
-	 * @param curPage µ±Ç°Ò³Êı
-	 * @param numPerPage Ã¿Ò³ÏÔÊ¾Êı¾İÌõÊı
+	 * @date 2017-6-5 ä¸‹åˆ6:04:27
+	 * @param sql æŸ¥è¯¢SQL
+	 * @param args æŸ¥è¯¢æ¡ä»¶å‚æ•°
+	 * @param curPage å½“å‰é¡µæ•°
+	 * @param numPerPage æ¯é¡µæ˜¾ç¤ºæ•°æ®æ¡æ•°
 	 * @return DBPage
 	 */
 	public abstract DBPage queryPage(String sql, Object[] args, int curPage, int numPerPage);
 
 	/**
-	 * ¿ªÆôÊı¾İ¿âÊÂÎñ
+	 * å¼€å¯æ•°æ®åº“äº‹åŠ¡
 	 * @author zhangdq
 	 * @date 2017-05-25 22:57
 	 */
 	public abstract void beginTrans();
 
 	/**
-	 * Ìá½»Êı¾İ¿âÊÂÎñ
+	 * æäº¤æ•°æ®åº“äº‹åŠ¡
 	 * @author zhangdq
 	 */
 	public abstract void commitTrans();
 
 	/**
-	 * »Ø¹öÊı¾İ¿âÊÂÎñ²Ù×÷
+	 * å›æ»šæ•°æ®åº“äº‹åŠ¡æ“ä½œ
 	 * @author zhangdq
 	 */
 	public abstract void rollbackTrans();
 
 	/**
-	 * ¹Ø±ÕÊı¾İ¿âÁ¬½Ó£¬Êı¾İ¿â¹Ø±ÕÒì³£²»×ö´¦Àí
+	 * å…³é—­æ•°æ®åº“è¿æ¥ï¼Œæ•°æ®åº“å…³é—­å¼‚å¸¸ä¸åšå¤„ç†
 	 * @author zhangdq
 	 */
 	public abstract void close();
 	
 	/**
-	 * »ñÈ¡²åÈëÊ±×Ô¶¯Éú³ÉµÄÖ÷¼ü
+	 * è·å–æ’å…¥æ—¶è‡ªåŠ¨ç”Ÿæˆçš„ä¸»é”®
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç4:30:44
+	 * @date 2017-6-13 ä¸‹åˆ4:30:44
 	 * @param 
 	 * @return
 	 */
