@@ -11,7 +11,7 @@
     <link href="css/font-awesome.css" rel="stylesheet" />
     <link href="css/basic.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
-    <link href="css/index/index.css" rel="stylesheet" />
+    <link href="css/common/chm.css" rel="stylesheet" />
 </head>
 <body>
 	<div id="wrapper">
