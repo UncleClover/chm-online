@@ -7,11 +7,11 @@
     <title>chm-online</title>
     <link href="/favicon.ico" type="image/x-icon" rel=icon>
 	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link href="css/font-awesome.css" rel="stylesheet" />
-    <link href="css/basic.css" rel="stylesheet" />
-    <link href="css/custom.css" rel="stylesheet" />
-    <link href="css/common/chm.css" rel="stylesheet" />
+    <link href="/css/bootstrap.css" rel="stylesheet" />
+    <link href="/css/font-awesome.css" rel="stylesheet" />
+    <link href="/css/basic.css" rel="stylesheet" />
+    <link href="/css/custom.css" rel="stylesheet" />
+    <link href="/css/common/chm.css" rel="stylesheet" />
 </head>
 <body>
 	<div id="wrapper">
@@ -97,11 +97,10 @@
             </div>
         </div>
     </div>
-    <script src="script/jquery-1.10.2.js"></script>
-    <script src="script/bootstrap.js"></script>
-    <script src="script/jquery.metisMenu.js"></script>
-    <script src="script/custom.js"></script>
-    <script src="script/index/index.js"></script>
+    <script src="/script/jquery-1.10.2.js"></script>
+    <script src="/script/bootstrap.js"></script>
+    <script src="/script/jquery.metisMenu.js"></script>
+    <script src="/script/index/index.js"></script>
 </body>
 </html>
 </#escape>

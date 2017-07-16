@@ -11,7 +11,7 @@
     <link href="/css/font-awesome.css" rel="stylesheet" />
     <link href="/css/basic.css" rel="stylesheet" />
     <link href="/css/custom.css" rel="stylesheet" />
-	<link href="css/common/chm.css" rel="stylesheet" />
+	<link href="/css/common/chm.css" rel="stylesheet" />
     <script charset="utf-8" src="/editor/kindeditor.js"></script>
 	<script charset="utf-8" src="/editor/lang/zh-CN.js"></script>
 	<script charset="utf-8" src="/common/kindEditor.js"></script>
