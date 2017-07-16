@@ -13,21 +13,7 @@
     <link href="/css/custom.css" rel="stylesheet" />
 	<link href="/css/common/chm.css" rel="stylesheet" />
     <script charset="utf-8" src="/editor/kindeditor.js"></script>
-	<script charset="utf-8" src="/editor/lang/zh-CN.js"></script>
-	<script charset="utf-8" src="/common/kindEditor.js"></script>
-	<script>
-    	KindEditor.ready(function(K) {
-			window.editor = K.create("#kindeditor", {
-				width : "100%",
-        		height : "700px",
-        		items : ["source", "|", "undo", "redo", "|", "preview", "code", "plainpaste", "wordpaste", "|", 
-        				 "justifyleft", "justifycenter", "justifyright","justifyfull", "indent", "outdent", "lineheight", "|", 
-        				 "clearhtml", "removeformat", "quickformat", "fullscreen", "|", "formatblock", "fontname", "fontsize", 
-        				 "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "subscript", 
-        				 "superscript", "/", "image", "multiimage","table", "hr", "emoticons", "baidumap", "anchor", "link", "unlink"]
-			});
-		});
-	</script>
+    <script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -65,7 +51,7 @@
                             		<input class="index-input" style="width:80%;" type="txt" name="title" id="title"/>
                             	</div>
                                	<textarea id="kindeditor" name="content"></textarea>
-                               	<div style="padding-top:10px;"><a href="javascript:void(0);" class="btn btn-info btn-block">保存CHM</a></div>
+                               	<div style="padding-top:10px;"><a href="javascript:void(0);" class="btn btn-info btn-block" id="save">保存CHM</a></div>
                             </div>
                         </div>
                     </div>
@@ -76,8 +62,7 @@
     <script src="/script/jquery-1.10.2.js"></script>
     <script src="/script/bootstrap.js"></script>
     <script src="/script/jquery.metisMenu.js"></script>
-    <script src="/script/custom.js"></script>
-    <script src="/script/index/index.js"></script>
+    <script src="/script/article/add.js"></script>
 </body>
 </html>
 </#escape>
