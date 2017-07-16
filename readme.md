@@ -1,13 +1,16 @@
-#��Ŀ��ע˵�������ĵ���ο����ļ�
+#项目备注说明、更改点请参考此文件
 #2017-04-09 00:32
-��Ŀ������Tomcat6	JDK1.6.0_45		struts2-2.3.15.1	mysql
-����mysql�õ���Linux�汾��mysql�汾��mysql-5.6.28-linux-glibc2.5-x86_64.tar.gz
-mysql���ӵ�ַ��192.168.1.108:3306
-mysql�˿ں�3306�ǲ���ģ�IP��ַ�ᷢ���仯����ΪLinux��װ��������ϣ�Linux����Ϊ���ӵ����粻ͬ�������仯��
+项目环境：Tomcat6	JDK1.6.0_45		struts2-2.3.15.1	mysql
+其中mysql用的是Linux版本，mysql版本：mysql-5.6.28-linux-glibc2.5-x86_64.tar.gz
+mysql连接地址：192.168.1.108:3306
+mysql端口号3306是不变的，IP地址会发生变化。因为Linux安装在虚拟机上，Linux会因为连接的网络不同而发生变化。
 
-Ŀ¼�ṹ˵����
-doc����Ŀ�����ļ������ڸ�Ŀ¼�£��������е�SQL�ļ���
+目录结构说明：
+doc：项目所有文件都放在该目录下，包括所有的SQL文件。
 
-#2017006-22 11:17
-mysql���ӵ�ַ��127.0.0.1:3306
-������������ΪNAT��ʽ��ͨ������ת�ӿ��Թ̶�IP��ַ
+#2017-06-22 11:17
+mysql连接地址：127.0.0.1:3306
+虚拟机网络调整为NAT方式，通过网络转接可以固定IP地址
+
+#2017-07-16 21:36
+项目调整为gradle
