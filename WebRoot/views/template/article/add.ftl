@@ -7,13 +7,13 @@
     <title>chm-online</title>
     <link href="/favicon.ico" type="image/x-icon" rel=icon>
 	<link href="/favicon.ico" type="image/x-icon" rel="shortcut icon">
-    <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/css/font-awesome.css" rel="stylesheet" />
-    <link href="/css/basic.css" rel="stylesheet" />
-    <link href="/css/custom.css" rel="stylesheet" />
-	<link href="/css/common/chm.css" rel="stylesheet" />
-    <script charset="utf-8" src="/editor/kindeditor.js"></script>
-    <script charset="utf-8" src="/editor/lang/zh_CN.js"></script>
+    <link href="/ui-frame/css/bootstrap.css" rel="stylesheet" />
+    <link href="/ui-frame/css/font-awesome.css" rel="stylesheet" />
+    <link href="/ui-frame/css/basic.css" rel="stylesheet" />
+    <link href="/ui-frame/css/custom.css" rel="stylesheet" />
+	<link href="/ui-frame/css/common/chm.css" rel="stylesheet" />
+    <script charset="utf-8" src="/ui-frame/editor/kindeditor.js"></script>
+    <script charset="utf-8" src="/ui-frame/editor/lang/zh_CN.js"></script>
 </head>
 <body>
 	<div id="wrapper">
@@ -23,7 +23,7 @@
             </div>
             <div class="header-right">
                 <a href="javascript:void(0);" class="btn btn-danger" title="退出"><i class="fa fa-dot-circle-o fa-2x"></i></a>
-                <a href="javascript:void(0);" class="btn" title="个人中心"><img src="/img/user.png" class="img-thumbnail" width="40px" height="40px"/></i></a>
+                <a href="javascript:void(0);" class="btn" title="个人中心"><img src="/ui-frame/img/user.png" class="img-thumbnail" width="40px" height="40px"/></i></a>
             </div>
         </nav>
         <nav class="navbar-default navbar-side" role="navigation">
@@ -59,10 +59,10 @@
             </div>
         </div>
     </div>
-    <script src="/script/jquery-1.10.2.js"></script>
-    <script src="/script/bootstrap.js"></script>
-    <script src="/script/jquery.metisMenu.js"></script>
-    <script src="/script/article/add.js"></script>
+    <script src="/ui-frame/script/jquery-1.10.2.js"></script>
+    <script src="/ui-frame/script/bootstrap.js"></script>
+    <script src="/ui-frame/script/jquery.metisMenu.js"></script>
+    <script src="/ui-frame/script/article/add.js"></script>
 </body>
 </html>
 </#escape>
