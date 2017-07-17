@@ -36,8 +36,6 @@ dependencies {
 	compile "org.springframework:spring-context-support:4.3.6.RELEASE"
 	compile "org.springframework:spring-core:4.3.6.RELEASE"
 	compile "org.springframework:spring-expression:4.3.6.RELEASE"
-	compile "org.apache.struts:struts2-core:2.3.15.1"
-	compile "org.apache.struts:struts2-convention-plugin:2.3.15.1"	
 	compile "org.springframework:spring-jdbc:4.3.6.RELEASE"
 	compile "org.springframework:spring-jms:4.3.6.RELEASE"
 	compile "org.springframework:spring-web:4.3.6.RELEASE"
