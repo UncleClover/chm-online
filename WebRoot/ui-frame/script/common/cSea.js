@@ -1,3 +1,12 @@
+// seajs配置
+seajs.config({
+	base: "/ui-frame/script/",
+	alias : {
+				"jquery" : "/ui-frame/script/jquery-1.10.2"
+			}
+});
+
+
 /**
  * 规范sea js文件的开发
  * init():初始化页面数据
@@ -13,6 +22,12 @@
  *  	// 自定义JS方法写在此处-start
  *  	......
  *  	// 自定义JS方法写在此处-start
+ *  	
+ *  	var js_file_name = {
+ *  		"init" : init,
+ *  		"events" : events
+ *  	};
+ *  	module.exports = js_file_name;
  *  });
  *  
  *  @author zhangdq
@@ -20,9 +35,4 @@
  *  @version V2017.0.0.1
  *  @Email qiang900714@126.com
  */
-define("/ui-frame/script/common/cSea",function(require, exports, module){
-	seajs.use(pageUrl, function(c){
-		c.init();
-		c.events();
-	});
-});
+seajs.use(pageUrl, function(c){c.init();c.events();});
