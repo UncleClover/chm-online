@@ -67,7 +67,7 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 		
 		// 新增chm
 		$("#add_chm").click(function(){
-			location.href = "/views/article.action";
+			location.href = "/article/add";
 		});
 	};
 	
