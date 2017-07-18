@@ -10,10 +10,10 @@ public class TemplateConstants {
 	/**
 	 * chm首页视图
 	 */
-	public final static String CHM_INDEX = "template/home/index";
+	public final static String CHM_INDEX = "/home/index";
 	
 	/**
 	 * 新增chm页面视图
 	 */
-	public final static String CHM_ARTICLE_ADD = "template/article/add";
+	public final static String CHM_ARTICLE_ADD = "/article/add";
 }

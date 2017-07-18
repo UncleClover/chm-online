@@ -6,14 +6,26 @@
         
 	<!-- Freemarker配置 -->  
 	<bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">  
-    	<property name="templateLoaderPath" value="/views/" />  
+    	<!-- 视图文件目录路径 -->
+    	<property name="templateLoaderPath" value="/views/template/" />  
     	<property name="freemarkerSettings">  
-			<props>  
+			<props>
+				<!-- 每次请求都重新载入模板，不缓存 -->
 		    	<prop key="template_update_delay">0</prop>  
-		        <prop key="default_encoding">UTF-8</prop>  
-		        <prop key="number_format">0.##########</prop>  
-		        <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>  
-		        <prop key="classic_compatible">true</prop>  
+		    	
+		    	<!-- 设置模板编码格式 -->
+		        <prop key="default_encoding">UTF-8</prop>
+		        
+		        <!-- 数字格式化 -->
+		        <prop key="number_format">0.##########</prop>
+		        
+		        <!-- 日期格式化 -->
+		        <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+		        
+		        <!-- 兼容前端空指针 -->
+		        <prop key="classic_compatible">true</prop>
+		        
+		        <!-- 忽略异常 -->
 		        <prop key="template_exception_handler">ignore</prop>  
 		    </props>  
     	</property>  
