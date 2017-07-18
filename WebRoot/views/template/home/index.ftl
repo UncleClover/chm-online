@@ -12,6 +12,7 @@
     <link href="/ui-frame/css/basic.css" rel="stylesheet" />
     <link href="/ui-frame/css/custom.css" rel="stylesheet" />
     <link href="/ui-frame/css/common/chm.css" rel="stylesheet" />
+    <#include "/common/ui-frame.ftl">
 </head>
 <body>
 	<div id="wrapper">
@@ -97,10 +98,10 @@
             </div>
         </div>
     </div>
-    <script src="/ui-frame/script/jquery-1.10.2.js"></script>
-    <script src="/ui-frame/script/bootstrap.js"></script>
-    <script src="/ui-frame/script/jquery.metisMenu.js"></script>
-    <script src="/ui-frame/script/index/index.js"></script>
+    <script>
+    	var pageUrl = "/ui-frame/script/index/index";
+    	seajs.use("/ui-frame/script/common/cSea");
+    </script>
 </body>
 </html>
 </#escape>
