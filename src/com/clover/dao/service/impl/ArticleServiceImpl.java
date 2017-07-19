@@ -2,6 +2,8 @@ package com.clover.dao.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.clover.base.constants.ChmConstants;
 import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
@@ -9,6 +11,7 @@ import com.clover.base.jdbc.session.JdbcTemplate;
 import com.clover.base.service.BaseService;
 import com.clover.dao.service.ArticleService;
 
+@Service
 public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	/**
