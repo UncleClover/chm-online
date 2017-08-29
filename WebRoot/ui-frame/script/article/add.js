@@ -41,10 +41,11 @@ define("/ui-frame/script/article/add", function(require, exports, module){
 				$.ajax({
 					method : "post",
 					type : "json",
-					url : "",
-					data : {},
-					success : function(result){
-						
+					url : "/article/save",
+					data : {"title" : title, "content" : content},
+					success : function(data){
+						var result = data.result;
+						console.log(result.name);
 					}
 				});
 			});

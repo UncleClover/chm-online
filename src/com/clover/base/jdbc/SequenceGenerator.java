@@ -6,7 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.clover.base.constants.ChmConstants;
 import com.clover.base.jdbc.session.impl.SessionImpl;
@@ -22,7 +23,7 @@ import com.clover.base.utils.StringUtils;
  */
 public class SequenceGenerator {
 	
-	private static Logger logger = Logger.getLogger(SessionImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(SessionImpl.class);
 	
 	public static SequenceGenerator instance = new SequenceGenerator();
 

@@ -7,7 +7,9 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * @desc 数据库连接工具类
@@ -18,7 +20,7 @@ import org.apache.log4j.Logger;
  * @date 2017-5-1 下午7:59:34
  */
 public class ConnTools {
-	private static Logger logger = Logger.getLogger(ConnTools.class);
+	private static Logger logger = LoggerFactory.getLogger(ConnTools.class);
 	private static DataSourceTools datasourceTools = DataSourceTools.getInstance();
 
 	/**

@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.clover.base.jdbc.DBPage;
 import com.clover.base.jdbc.DataRow;
@@ -21,7 +22,7 @@ import com.clover.base.jdbc.DatabaseType;
 import com.clover.base.jdbc.session.Session;
 
 public class SessionImpl implements Session {
-	private static Logger logger = Logger.getLogger(SessionImpl.class);
+	private static Logger logger = LoggerFactory.getLogger(SessionImpl.class);
 	private Connection conn = null;
 	private String generatedKeys = "";
 	private int databaseType = DatabaseType.ORACLE;
@@ -83,10 +84,10 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int result = 0;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
-			// mysqlÊý¾Ý¿â²åÈëÊ±»á·µ»ØÖ÷¼ü×Ô¶¯Ôö³¤µÄÊýÖµ
+			// mysqlï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½Ê±ï¿½á·µï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
 			if (DatabaseType.MYSQL == databaseType && sql.toLowerCase().startsWith("insert")) {
 				psmt = (PreparedStatement) this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			} else {
@@ -106,7 +107,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý¸üÐÂÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý¸ï¿½ï¿½ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -122,14 +123,14 @@ public class SessionImpl implements Session {
 		try {
 			stmt = conn.createStatement();
 			for (int i = 0; i < sql.length; i++) {
-				logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql[i]);
+				logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql[i]);
 
 				stmt.addBatch(sql[i]);
 			}
 
 			result = stmt.executeBatch();
 		} catch (SQLException e) {
-			logger.info("Êý¾ÝÅúÁ¿¸üÐÂÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeStatement(stmt);
@@ -142,7 +143,7 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		int[] result = null;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -155,7 +156,7 @@ public class SessionImpl implements Session {
 			}
 			result = psmt.executeBatch();
 		} catch (SQLException e) {
-			logger.info("Êý¾ÝÅúÁ¿¸üÐÂÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeStatement(psmt);
@@ -170,11 +171,11 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues) {
-		// ×é×°¸üÐÂSQLÓï¾ä
+		// ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½SQLï¿½ï¿½ï¿½
 		StringBuffer sb = new StringBuffer();
 		sb.append("update ").append(tbName).append(" set ");
 
-		// Èç¹û¸üÐÂµÄ×Ö¶ÎÊÇÌõ¼þÖ®Ò»£¬Ôò´Ó¸üÐÂ×Ö¶ÎÖÐÉ¾³ý
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®Ò»ï¿½ï¿½ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½É¾ï¿½ï¿½
 		for (int i = 0; i < identifys.length; i++) {
 			data.remove(identifyValues[i]);
 		}
@@ -208,7 +209,7 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 		try {
 			psmt = conn.prepareStatement(sql);
 			if (args != null && args.length > 0) {
@@ -217,12 +218,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // »ñµÃÁÐ¼¯
+			ResultSetMetaData rsm = rs.getMetaData(); // ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½
 			while (rs.next()) {
 				list.add(toDataRow(rs, rsm));
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -252,21 +253,21 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
 
-		// ×é×°SQLÓï¾ä
+		// ï¿½ï¿½×°SQLï¿½ï¿½ï¿½
 		StringBuffer sb = new StringBuffer();
 		if(DatabaseType.ORACLE == databaseType){
-			logger.info("OracleÊý¾Ý¿â²éÑ¯SQL×é×°~");
+			logger.info("Oracleï¿½ï¿½Ý¿ï¿½ï¿½Ñ¯SQLï¿½ï¿½×°~");
 			sb.append("select * from (select row_.*,rownum rownum_ from (");
 			sb.append(sql);
 			sb.append(") row_ where rownum <=" + (startRows + rows) + ") where rownum_ > " + startRows);
 
 		}else if(DatabaseType.MYSQL == databaseType){
-			logger.info("mysqlÊý¾Ý¿â²éÑ¯SQL×é×°~");
+			logger.info("mysqlï¿½ï¿½Ý¿ï¿½ï¿½Ñ¯SQLï¿½ï¿½×°~");
 			sb.append(sql);
 			sb.append("limit" + startRows + "," + rows);
 		}
 		
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sb.toString());
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sb.toString());
 
 		try {
 			psmt = conn.prepareStatement(sb.toString());
@@ -277,12 +278,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // »ñµÃÁÐ¼¯
+			ResultSetMetaData rsm = rs.getMetaData(); // ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½
 			while (rs.next()) {
 				list.add(toDataRow(rs, rsm));
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -302,7 +303,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int result = 0;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -316,7 +317,7 @@ public class SessionImpl implements Session {
 				result = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -336,7 +337,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int[] result = null;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -359,7 +360,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -379,7 +380,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		long result = 0;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -393,7 +394,7 @@ public class SessionImpl implements Session {
 				result = rs.getLong(1);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -413,7 +414,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		long[] result = null;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -436,7 +437,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -456,7 +457,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		String result = null;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -470,7 +471,7 @@ public class SessionImpl implements Session {
 				result = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -490,7 +491,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		String[] result = null;
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -513,7 +514,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -533,7 +534,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		DataRow data = new DataRow();
 
-		logger.info("¿ªÊ¼Ö´ÐÐSQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("ï¿½ï¿½Ê¼Ö´ï¿½ï¿½SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -543,12 +544,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // »ñµÃÁÐ¼¯
+			ResultSetMetaData rsm = rs.getMetaData(); // ï¿½ï¿½ï¿½ï¿½Ð¼ï¿½
 			while (rs.next()) {
 				data = toDataRow(rs, rsm);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý²éÑ¯Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý²ï¿½Ñ¯ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -597,7 +598,7 @@ public class SessionImpl implements Session {
 				conn.setAutoCommit(false);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾ÝÊÂÎñ¿ªÆôÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
@@ -609,7 +610,7 @@ public class SessionImpl implements Session {
 				conn.commit();
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾ÝÊÂÎñÌá½»Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á½»ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
@@ -621,7 +622,7 @@ public class SessionImpl implements Session {
 				conn.rollback();
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾ÝÊÂÎñ»Ø¹öÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¹ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
@@ -634,7 +635,7 @@ public class SessionImpl implements Session {
 			}
 			conn = null;
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý¹Ø±ÕÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý¹Ø±ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
@@ -647,7 +648,7 @@ public class SessionImpl implements Session {
 		this.generatedKeys = generatedKeys;
 	}
 	/**
-	 * @desc ¹Ø±ÕÊý¾Ý¿â½á¹û¼¯£¬¶ÔÒì³£²»×ö´¦ÀíÖ±½ÓÅ×³ö£¬ÒòÎªÊý¾Ý¿âµ÷ÓÃ³öÎÊÌâÊÇ²»ÔÊÐí
+	 * @desc ï¿½Ø±ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @author zhangdq
 	 * @time 2017-06-01 22:36
 	 * @param rs
@@ -658,13 +659,13 @@ public class SessionImpl implements Session {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý½á¹û¼¯¹Ø±ÕÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý½ï¿½ï¿½Ø±ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @desc ¹Ø±ÕÊý¾Ý¿âÖ´ÐÐ½Ó¿Ú£¬¶ÔÒì³£²»×ö´¦ÀíÖ±½ÓÅ×³ö£¬ÒòÎªÊý¾Ý¿âµ÷ÓÃ³öÎÊÌâÊÇ²»ÔÊÐí
+	 * @desc ï¿½Ø±ï¿½ï¿½ï¿½Ý¿ï¿½Ö´ï¿½Ð½Ó¿Ú£ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½×³ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ý¿ï¿½ï¿½ï¿½Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @author zhangdq
 	 * @time 2017-06-01 22:39
 	 * @param stmt
@@ -675,22 +676,22 @@ public class SessionImpl implements Session {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý¿âÔ¤±àÒë¶ÔÏó¹Ø±ÕÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý¿ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @desc ½á¹û¼¯×ª»¯ÎªDataRow¸ñÊ½
+	 * @desc ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªDataRowï¿½ï¿½Ê½
 	 * @author zhangdq
-	 * @time 2017-6-2 ÏÂÎç3:42:58
+	 * @time 2017-6-2 ï¿½ï¿½ï¿½ï¿½3:42:58
 	 * @param
 	 * @return
 	 */
 	public DataRow toDataRow(ResultSet rs, ResultSetMetaData rsmd) {
 		DataRow data = new DataRow();
 		try {
-			// »ñµÃÁÐµÄ¸öÊý
+			// ï¿½ï¿½ï¿½ï¿½ÐµÄ¸ï¿½ï¿½ï¿½
 			int col = rsmd.getColumnCount();
 			for (int i = 0; i < col; i++) {
 				String colmunName = rsmd.getColumnName(i + 1);
@@ -705,17 +706,17 @@ public class SessionImpl implements Session {
 				data.set(colmunName, value);
 			}
 		} catch (SQLException e) {
-			logger.info("Êý¾Ý¿â½á¹û¼¯×ª»¯ÎªDataRow¸ñÊ½Òì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½×ªï¿½ï¿½ÎªDataRowï¿½ï¿½Ê½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 		return data;
 	}
 	
 	/**
-	 * ÉèÖÃÊý¾Ý¿âÁ¬½ÓÀàÐÍ
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @author zhangdq
-	 * @date 2017-6-13 ÏÂÎç4:44:59
-	 * @param Connection Êý¾Ý¿âÁ¬½Ó
+	 * @date 2017-6-13 ï¿½ï¿½ï¿½ï¿½4:44:59
+	 * @param Connection ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @return
 	 */
 	public void setDababaseType(Connection conn) {
@@ -726,11 +727,11 @@ public class SessionImpl implements Session {
 			} else if (databaseTypeStr.equalsIgnoreCase("MySQL")) {
 				databaseType = DatabaseType.MYSQL;
 			} else {
-				logger.error("²éÑ¯Êý¾Ý²úÉÌÊ§°Ü~Ä¬ÈÏ·µ»ØOracleÊý¾Ý¿âÀàÐÍ");
-				throw new Exception("ÔÝ²»Ö§³Ö¸ÃÊý¾Ý¿â£¡<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
+				logger.error("ï¿½ï¿½Ñ¯ï¿½ï¿½Ý²ï¿½ï¿½ï¿½Ê§ï¿½ï¿½~Ä¬ï¿½Ï·ï¿½ï¿½ï¿½Oracleï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½");
+				throw new Exception("ï¿½Ý²ï¿½Ö§ï¿½Ö¸ï¿½ï¿½ï¿½Ý¿â£¡<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
 			}
 		} catch (Exception e) {
-			logger.info("ÉèÖÃÊý¾Ý¿âÁ¬½ÓÀàÐÍÒì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>Òì³£ÐÅÏ¢£º" + e);
+			logger.info("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>ï¿½ì³£ï¿½ï¿½Ï¢ï¿½ï¿½" + e);
 			e.printStackTrace();
 		}
 	}

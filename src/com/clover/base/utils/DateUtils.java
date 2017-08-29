@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 日期工具类
@@ -14,7 +15,7 @@ import org.apache.log4j.Logger;
  * @Email qiang900714@126.com
  */
 public class DateUtils {
-	private static Logger logger = Logger.getLogger(DateUtils.class);
+	private static Logger logger = LoggerFactory.getLogger(DateUtils.class);
 	
 	/**
 	 * 获取当前时间(日期格式：Mon Jul 03 10:58:55 CST 2017)

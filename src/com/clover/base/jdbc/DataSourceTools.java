@@ -9,11 +9,12 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.clover.base.constants.ChmConstants;
 import com.clover.base.utils.StringUtils;
@@ -21,7 +22,7 @@ import com.mchange.v2.c3p0.DataSources;
 
 public class DataSourceTools {
 
-	private static Logger logger = Logger.getLogger(DataSourceTools.class);
+	private static Logger logger = LoggerFactory.getLogger(DataSourceTools.class);
 
 	private static DataSourceTools instance = new DataSourceTools();
 
@@ -32,12 +33,12 @@ public class DataSourceTools {
 	private static String _default = "";
 
 	static {
-		SAXBuilder builder = new SAXBuilder();
-		InputStream file = ClassLoader.getSystemResourceAsStream(ChmConstants.DATASOURCE_FILE_NAME);
 		try {
+			SAXBuilder builder = new SAXBuilder();
+			InputStream file = DataSourceTools.class.getClassLoader().getResourceAsStream(ChmConstants.DATASOURCE_FILE_NAME);
 			Document document = builder.build(file);
-			Element root = document.getRootElement();// 鑾峰緱鏍硅妭鐐�
-			_default = root.getAttributeValue("default");// 鑾峰彇榛樿鏁版嵁搴撹繛鎺D
+			Element root = document.getRootElement();// 获得根节点
+			_default = root.getAttributeValue("default");// 获取默认数据库连接ID
 
 			List<Element> list = root.getChildren("bean");
 			for (Iterator<Element> it = list.iterator(); it.hasNext();) {
@@ -61,20 +62,24 @@ public class DataSourceTools {
 				dataSourceMap.put(beanId, ds);
 			}
 		} catch (JDOMException e) {
-			logger.error("鏁版嵁搴撴枃浠惰妭鐐硅鍙栧紓甯革細" + e);
+			logger.error("数据库文件节点读取异常：" + e);
 		} catch (IOException e) {
-			logger.error("鏁版嵁搴撴枃浠惰鍙栧紓甯革細" + e);
+			logger.error("数据库文件读取异常：" + e);
 		}
 	}
 
+	public DataSourceTools(){
+		
+	}
+	
 	public static DataSourceTools getInstance() {
 		return instance;
 	}
 
 	/**
-	 * @desc 鍒涘缓C3P0鏁版嵁婧�
+	 * @desc 创建C3P0数据源
 	 * @author zhangdq
-	 * @time 2017-4-9 涓嬪崍7:50:54
+	 * @time 2017-4-9 下午7:50:54
 	 * @param Map
 	 * @return DataSource
 	 */
@@ -92,23 +97,23 @@ public class DataSourceTools {
 		try {
 			Class.forName(driverName);
 
-			// 涓嶅甫杩炴帴姹犵殑DataSource
+			// 不带连接池的DataSource
 			DataSource unpooled = DataSources.unpooledDataSource(url, user, password);
 
-			// 鐢变笉甯﹁繛鎺ユ睜鐨凞ataSource鍒涘缓甯﹁繛鎺ユ睜鐨凞ataSource
+			// 由不带连接池的DataSource创建带连接池的DataSource
 			DataSource pooled = DataSources.pooledDataSource(unpooled, paramMap);
 
 			return pooled;
 		} catch (Exception e) {
-			logger.error("鍒涘缓C3P0鏁版嵁婧愬紓甯革細" + e);
+			logger.error("创建C3P0数据源异常：" + e);
 		}
 		return null;
 	}
 
 	/**
-	 * @desc 鑾峰彇榛樿鐨勬暟鎹簱杩炴帴
+	 * @desc 获取默认的数据库连接
 	 * @author zhangdq
-	 * @time 2017-5-1 涓嬪崍7:15:48
+	 * @time 2017-5-1 下午7:15:48
 	 * @param
 	 * @return DataSource
 	 */
@@ -129,14 +134,15 @@ public class DataSourceTools {
 	}
 
 	/**
-	 * @desc 鑾峰彇鎸囧畾鐨勬暟鎹簱杩炴帴
+	 * @desc 获取指定的数据库连接
 	 * @author zhangdq
-	 * @time 2017-5-1 涓嬪崍7:14:53
-	 * @param id 鎸囧畾鏁版嵁搴揑D
+	 * @time 2017-5-1 下午7:14:53
+	 * @param id 指定数据库ID
 	 * @return DataSource
 	 */
 	public DataSource getDataSource(String id) {
 		if (dataSourceMap.size() < 1) {
+			logger.error("获取数据库连接失败~");
 			return null;
 		}
 
@@ -144,9 +150,9 @@ public class DataSourceTools {
 	}
 
 	/**
-	 * @desc 鑾峰彇鎸囧畾鏁版嵁搴撹繛鎺ラ厤缃�
+	 * @desc 获取指定数据库连接配置
 	 * @author zhangdq
-	 * @time 2017.5.2 涓嬪崍23:35:00
+	 * @time 2017.5.2 下午23:35:00
 	 * @param id
 	 * @return
 	 */
@@ -159,5 +165,10 @@ public class DataSourceTools {
 			return null;
 		}
 		return (HashMap<String, String>) dataSourceParam.get(id);
+	}
+	
+	public static void main(String[] args) {
+		DataSourceTools tools = DataSourceTools.getInstance();
+		System.out.println(tools.getDataSource());
 	}
 }

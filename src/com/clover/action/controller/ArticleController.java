@@ -24,6 +24,16 @@ public class ArticleController {
 		return TemplateConstants.CHM_ARTICLE_ADD;
 	}
 	
+	/**
+	 * 保存文章内容
+	 * 
+	 * @author zhangdq
+	 * @time 2017年8月29日 下午11:13:34
+	 * @Email qiang900714@126.com
+	 * @param title
+	 * @param content
+	 * @return
+	 */
 	@RequestMapping("save")
 	@ResponseBody
 	public BaseResponse saveArticle(String title, String content){
@@ -39,8 +49,6 @@ public class ArticleController {
 		data.set("content", content);
 		int row = service.addArticle(data);
 		
-		BaseResponse result = new BaseResponse(ChmConstants.OPER_SUCCESS_CODE, ChmConstants.OPER_SUCCESS_MSG);
-		result.setResult(row);
-		return result;
+		return new BaseResponse(ChmConstants.OPER_SUCCESS_CODE, ChmConstants.OPER_SUCCESS_MSG, row);
 	}
 }

@@ -38,4 +38,9 @@ public final class SessionFactory {
 		Connection conn = ConnTools.getConnect();
 		return new SessionImpl(conn);
 	}
+	
+	public static void main(String[] args) {
+		Session session = SessionFactory.getSession("chm");
+		System.out.println(session == null);
+	}
 }

@@ -29,6 +29,12 @@ public class BaseResponse implements Serializable {
 		this.resultCode = resultCode;
 		this.resultMessage = resultMessage;
 	}
+	
+	public BaseResponse(String resultCode, String resultMessage, Object result){
+		this.resultCode = resultCode;
+		this.resultMessage = resultMessage;
+		this.result = result;
+	}
 
 	public String getResultCode() {
 		return resultCode;
