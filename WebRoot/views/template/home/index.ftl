@@ -17,10 +17,7 @@
                 <li><a href="javascript:void(0);" id="index_tab">索引</a></li>
                 <li><a href="javascript:void(0);" id="search_tab">搜索</a></li>
             </ul>
-            <ul class="index-ul" id="context">
-                <li class="item"><a href="javascript:void(0);">click</a></li>
-                <li class="item"><a href="javascript:void(0);">bind</a></li>
-            </ul>
+            <ul class="index-ul" id="context"></ul>
             <ul class="index-ul none" id="index">
                 <li><input id="index-input" class="index-input" type="txt" /></li>
                 <li class="item"><a href="javascript:void(0);">not</a></li>
@@ -90,4 +87,9 @@
 </script>
 <#-- 引入sea.js -->
 <#include "/common/ui-frame.ftl">
+
+<#-- 目录模板 -->
+<script id="contentTemplate" type="type/x-jsrender">
+	{{for}}<li class="item"><a href="javascript:void(0);" articleId = "{{:id}}">{{:title}}</a></li>{{/for}}
+</script>
 </#escape>

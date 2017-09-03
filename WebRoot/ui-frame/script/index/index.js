@@ -4,10 +4,18 @@
  * @time 2017-06-22 16:25
  */
 define("/ui-frame/script/index/index",function(require, exports, module){
-	require("jquery");
+	var $ = require("jquery");
+	require("jsrender");
+	require("jsviews");
+	
+	// 全局变量
+	var globalParam = {
+			"curPage" : 1,
+			"numPerPage" : 10
+	};
 	
 	function init(){
-		
+		initContentList();					// 初始化目录
 	}
 	
 	// 事件处理
@@ -70,6 +78,20 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 			location.href = "/article/add";
 		});
 	};
+	
+	// 自定义方法-start
+	function initContentList(){
+		$.ajax({
+			method : "POST",
+			dataType : "JSON",
+			url : "/article/list",
+			data : {"curPage" : globalParam.curPage, "numPerPage" : globalParam.numPerPage},
+			success : function(data){
+				$("#context").html($.templates("#contentTemplate").render(data.result.data));
+			}
+		});
+	};
+	// 自定义方法-end
 	
 	var index = {
 		"init" : init,
