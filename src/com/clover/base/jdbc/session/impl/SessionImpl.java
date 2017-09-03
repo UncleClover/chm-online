@@ -84,10 +84,10 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int result = 0;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("更新SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
-			// mysql��ݿ����ʱ�᷵�������Զ���������ֵ
+			// mysql数据库类型，插入时使用mysql自增长
 			if (DatabaseType.MYSQL == databaseType && sql.toLowerCase().startsWith("insert")) {
 				psmt = (PreparedStatement) this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			} else {
@@ -107,7 +107,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("��ݸ����쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("更新操作失败<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -123,14 +123,14 @@ public class SessionImpl implements Session {
 		try {
 			stmt = conn.createStatement();
 			for (int i = 0; i < sql.length; i++) {
-				logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql[i]);
+				logger.info("批量更新SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql[i]);
 
 				stmt.addBatch(sql[i]);
 			}
 
 			result = stmt.executeBatch();
 		} catch (SQLException e) {
-			logger.info("������������쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("批量更新失败<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息" + e);
 			e.printStackTrace();
 		} finally {
 			closeStatement(stmt);
@@ -143,7 +143,7 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		int[] result = null;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("批量更新SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -156,7 +156,7 @@ public class SessionImpl implements Session {
 			}
 			result = psmt.executeBatch();
 		} catch (SQLException e) {
-			logger.info("������������쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("批量更新失败<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeStatement(psmt);
@@ -171,11 +171,10 @@ public class SessionImpl implements Session {
 
 	@Override
 	public int update(String tbName, DataRow data, String[] identifys, Object[] identifyValues) {
-		// ��װ����SQL���
 		StringBuffer sb = new StringBuffer();
 		sb.append("update ").append(tbName).append(" set ");
 
-		// �����µ��ֶ�������֮һ����Ӹ����ֶ���ɾ��
+		// 更新操作时不对条件字段更新
 		for (int i = 0; i < identifys.length; i++) {
 			data.remove(identifyValues[i]);
 		}
@@ -209,7 +208,7 @@ public class SessionImpl implements Session {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 		try {
 			psmt = conn.prepareStatement(sql);
 			if (args != null && args.length > 0) {
@@ -218,12 +217,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // ����м�
+			ResultSetMetaData rsm = rs.getMetaData();
 			while (rs.next()) {
 				list.add(toDataRow(rs, rsm));
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("查询列表异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -253,21 +252,17 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		List<DataRow> list = new ArrayList<DataRow>();
 
-		// ��װSQL���
 		StringBuffer sb = new StringBuffer();
 		if(DatabaseType.ORACLE == databaseType){
-			logger.info("Oracle��ݿ��ѯSQL��װ~");
 			sb.append("select * from (select row_.*,rownum rownum_ from (");
 			sb.append(sql);
 			sb.append(") row_ where rownum <=" + (startRows + rows) + ") where rownum_ > " + startRows);
-
 		}else if(DatabaseType.MYSQL == databaseType){
-			logger.info("mysql��ݿ��ѯSQL��װ~");
 			sb.append(sql);
-			sb.append("limit" + startRows + "," + rows);
+			sb.append(" limit " + startRows + "," + rows);
 		}
 		
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sb.toString());
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sb.toString());
 
 		try {
 			psmt = conn.prepareStatement(sb.toString());
@@ -278,12 +273,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // ����м�
+			ResultSetMetaData rsm = rs.getMetaData(); 
 			while (rs.next()) {
 				list.add(toDataRow(rs, rsm));
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("查询失败<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -303,7 +298,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int result = 0;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -317,7 +312,7 @@ public class SessionImpl implements Session {
 				result = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -337,7 +332,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		int[] result = null;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -360,7 +355,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -380,7 +375,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		long result = 0;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -394,7 +389,7 @@ public class SessionImpl implements Session {
 				result = rs.getLong(1);
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -414,7 +409,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		long[] result = null;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -437,7 +432,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -457,7 +452,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		String result = null;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -471,7 +466,7 @@ public class SessionImpl implements Session {
 				result = rs.getString(1);
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -491,7 +486,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		String[] result = null;
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -514,7 +509,7 @@ public class SessionImpl implements Session {
 				}
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -534,7 +529,7 @@ public class SessionImpl implements Session {
 		ResultSet rs = null;
 		DataRow data = new DataRow();
 
-		logger.info("��ʼִ��SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
+		logger.info("查询SQL<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>sql = " + sql);
 
 		try {
 			psmt = conn.prepareStatement(sql);
@@ -544,12 +539,12 @@ public class SessionImpl implements Session {
 				}
 			}
 			rs = psmt.executeQuery();
-			ResultSetMetaData rsm = rs.getMetaData(); // ����м�
+			ResultSetMetaData rsm = rs.getMetaData();
 			while (rs.next()) {
 				data = toDataRow(rs, rsm);
 			}
 		} catch (SQLException e) {
-			logger.info("��ݲ�ѯ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库查询异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		} finally {
 			closeResultSet(rs);
@@ -598,7 +593,7 @@ public class SessionImpl implements Session {
 				conn.setAutoCommit(false);
 			}
 		} catch (SQLException e) {
-			logger.info("����������쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库事务开启异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
@@ -610,7 +605,7 @@ public class SessionImpl implements Session {
 				conn.commit();
 			}
 		} catch (SQLException e) {
-			logger.info("��������ύ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库提交异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
@@ -622,7 +617,7 @@ public class SessionImpl implements Session {
 				conn.rollback();
 			}
 		} catch (SQLException e) {
-			logger.info("�������ع��쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库操作回滚发生异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
@@ -635,7 +630,7 @@ public class SessionImpl implements Session {
 			}
 			conn = null;
 		} catch (SQLException e) {
-			logger.info("��ݹر��쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库连接关闭异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
@@ -648,7 +643,8 @@ public class SessionImpl implements Session {
 		this.generatedKeys = generatedKeys;
 	}
 	/**
-	 * @desc �ر���ݿ������쳣��������ֱ���׳�����Ϊ��ݿ���ó������ǲ�����
+	 * 数据库结果集关闭
+	 * 
 	 * @author zhangdq
 	 * @time 2017-06-01 22:36
 	 * @param rs
@@ -659,13 +655,13 @@ public class SessionImpl implements Session {
 				rs.close();
 			}
 		} catch (SQLException e) {
-			logger.info("��ݽ��ر��쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库结果集关闭异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @desc �ر���ݿ�ִ�нӿڣ����쳣��������ֱ���׳�����Ϊ��ݿ���ó������ǲ�����
+	 * 关闭数据库连接
 	 * @author zhangdq
 	 * @time 2017-06-01 22:39
 	 * @param stmt
@@ -676,22 +672,22 @@ public class SessionImpl implements Session {
 				stmt.close();
 			}
 		} catch (SQLException e) {
-			logger.info("��ݿ�Ԥ�������ر��쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库连接关闭异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * @desc ���ת��ΪDataRow��ʽ
+	 * 数据转化为DataRow
+	 * 
 	 * @author zhangdq
-	 * @time 2017-6-2 ����3:42:58
+	 * @time 2017-6-2 下午3:42:58
 	 * @param
 	 * @return
 	 */
 	public DataRow toDataRow(ResultSet rs, ResultSetMetaData rsmd) {
 		DataRow data = new DataRow();
 		try {
-			// ����еĸ���
 			int col = rsmd.getColumnCount();
 			for (int i = 0; i < col; i++) {
 				String colmunName = rsmd.getColumnName(i + 1);
@@ -706,17 +702,17 @@ public class SessionImpl implements Session {
 				data.set(colmunName, value);
 			}
 		} catch (SQLException e) {
-			logger.info("��ݿ���ת��ΪDataRow��ʽ�쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据转化为DataRow异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 		return data;
 	}
 	
 	/**
-	 * ������ݿ���������
+	 * 设置数据库类型：mysql/Oracle
 	 * @author zhangdq
-	 * @date 2017-6-13 ����4:44:59
-	 * @param Connection ��ݿ�����
+	 * @date 2017-6-13 下午4:44:59
+	 * @param Connection 数据库连接
 	 * @return
 	 */
 	public void setDababaseType(Connection conn) {
@@ -727,11 +723,11 @@ public class SessionImpl implements Session {
 			} else if (databaseTypeStr.equalsIgnoreCase("MySQL")) {
 				databaseType = DatabaseType.MYSQL;
 			} else {
-				logger.error("��ѯ��ݲ���ʧ��~Ĭ�Ϸ���Oracle��ݿ�����");
-				throw new Exception("�ݲ�֧�ָ���ݿ⣡<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
+				logger.error("数据库类型错误，暂不支持该类型(?)", databaseTypeStr);
+				throw new Exception("数据库类型<<<<<<<<<>>>>>>>>>" + databaseTypeStr);
 			}
 		} catch (Exception e) {
-			logger.info("������ݿ����������쳣-<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>�쳣��Ϣ��" + e);
+			logger.info("数据库类型设置异常<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>异常信息：" + e);
 			e.printStackTrace();
 		}
 	}
