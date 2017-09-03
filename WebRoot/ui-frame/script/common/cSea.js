@@ -1,9 +1,14 @@
 // seajs配置
 seajs.config({
-	base: "/ui-frame/script/",
+	base : "/ui-frame/script/",
 	alias : {
-				"jquery" : "/ui-frame/script/jquery-1.10.2"
-			}
+				"jquery" : "/ui-frame/script/jquery-1.10.1.js",
+				"jsrender" : "/ui-frame/script/common/jsrender/jsrender",
+				"jsviews" : "/ui-frame/script/common/jsrender/jsviews" 
+			},
+			
+	// 预加载jQuery，否则对jQuery有依赖的js插件将不能正常使用
+	preload:["jquery"]
 });
 
 
