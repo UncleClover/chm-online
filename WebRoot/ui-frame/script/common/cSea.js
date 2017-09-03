@@ -2,13 +2,10 @@
 seajs.config({
 	base : "/ui-frame/script/",
 	alias : {
-				"jquery" : "/ui-frame/script/jquery-1.10.1.js",
+				"jquery" : "/ui-frame/script/jquery-1.10.1",
 				"jsrender" : "/ui-frame/script/common/jsrender/jsrender",
 				"jsviews" : "/ui-frame/script/common/jsrender/jsviews" 
-			},
-			
-	// 预加载jQuery，否则对jQuery有依赖的js插件将不能正常使用
-	preload:["jquery"]
+			}
 });
 
 
@@ -26,7 +23,7 @@ seajs.config({
  *  
  *  	// 自定义JS方法写在此处-start
  *  	......
- *  	// 自定义JS方法写在此处-start
+ *  	// 自定义JS方法写在此处-end
  *  	
  *  	var js_file_name = {
  *  		"init" : init,
