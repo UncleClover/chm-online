@@ -57,5 +57,14 @@ public class ChmConstants {
 	 */
 	public final static String OPER_FAIL_MSG = "操作失败";
 	
+	/**
+	 * 首页常用chm列表查询格式
+	 * 
+	 * @author zhangdq
+	 * @time 2017-09-18 22:24
+	 * @value HOME_PAGE_HOT_LIST_NUM
+	 */
+	public final static String HOME_PAGE_HOT_LIST_NUM = "8";
+	
 	public final static String DB_TEST = "test";
 }

@@ -4,11 +4,13 @@
  * @time 2017-07-16 21:51
  */
 define("/ui-frame/script/article/add", function(require, exports, module){
-	require("jquery");
-	require("/ui-frame/editor/kindeditor");
-	require("/ui-frame/editor/lang/zh_CN");
-
-	function init(){}
+	var $ = require("jquery");
+	var navUtils = require("/ui-frame/script/common/navUtils");
+	
+	function init(){
+		navUtils.init();
+		navUtils.events();
+	}
 	
 	function events(){
 		KindEditor.ready(function(K) {
@@ -42,10 +44,11 @@ define("/ui-frame/script/article/add", function(require, exports, module){
 					method : "post",
 					type : "json",
 					url : "/article/save",
-					data : {"title" : title, "content" : content},
+					data : {"title" : title, "content" : content, "id" : $("#articleId").val()},
 					success : function(data){
-						var result = data.result;
-						console.log(result.name);
+						if(data.resultCode && data.resultCode == "000000"){
+							window.location.href = "/chm";
+						}
 					}
 				});
 			});

@@ -1,9 +1,9 @@
 /**
- * 首页页面处理(index.ftl)
+ * 页面左侧导航工具
  * @author zhangdq
- * @time 2017-06-22 16:25
+ * @time 2017-09-03 21:45
  */
-define("/ui-frame/script/index/index",function(require, exports, module){
+define("/ui-frame/script/common/navUtils", function(require, exports, module){
 	var $ = require("jquery");
 	require("jsrender");
 	require("jsviews");
@@ -81,7 +81,6 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 	
 	// 自定义方法-start
 	function initContentList(){
-		// 左导航列表
 		$.ajax({
 			method : "POST",
 			dataType : "JSON",
@@ -91,22 +90,12 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 				$("#context").html($.templates("#contentTemplate").render(data.result.data));
 			}
 		});
-		
-		// 常用列表
-		$.ajax({
-			method : "POST",
-			dataType : "JSON",
-			url : "/article/hotList",
-			success : function(data){
-				$("#hot_list").html($.templates("#hotContentTemplate").render(data.result));
-			}
-		});
 	};
 	// 自定义方法-end
 	
-	var index = {
+	var navUtils = {
 		"init" : init,
 		"events" : events	
 	};
-	module.exports = index;
+	module.exports = navUtils;
 });
