@@ -22,7 +22,7 @@ public interface ArticleService {
 	 * @param user_id 用户ID
 	 * @return DBPage
 	 */
-	DBPage queryAllArticle(String user_id);
+	DBPage queryAllArticle(String user_id, int curPage, int numPerPage);
 	
 	/**
 	 * 根据chm ID查询
@@ -78,4 +78,15 @@ public interface ArticleService {
 	 * @return
 	 */
 	int deleteArticle(DataRow data);
+	
+	/**
+	 * 查询首页常用chm列表
+	 * 
+	 * @author zhangdq
+	 * @time 2017年9月18日 下午10:21:21
+	 * @Email qiang900714@126.com
+	 * @param user_id
+	 * @return
+	 */
+	List<DataRow> queryArticleLimit(String user_id);
 }

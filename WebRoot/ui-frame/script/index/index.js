@@ -81,6 +81,7 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 	
 	// 自定义方法-start
 	function initContentList(){
+		// 左导航列表
 		$.ajax({
 			method : "POST",
 			dataType : "JSON",
@@ -88,6 +89,16 @@ define("/ui-frame/script/index/index",function(require, exports, module){
 			data : {"curPage" : globalParam.curPage, "numPerPage" : globalParam.numPerPage},
 			success : function(data){
 				$("#context").html($.templates("#contentTemplate").render(data.result.data));
+			}
+		});
+		
+		// 常用列表
+		$.ajax({
+			method : "POST",
+			dataType : "JSON",
+			url : "/article/hotList",
+			success : function(data){
+				$("#hot_list").html($.templates("#hotContentTemplate").render(data.result));
 			}
 		});
 	};

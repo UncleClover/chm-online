@@ -16,4 +16,9 @@ public class TemplateConstants {
 	 * 新增chm页面视图
 	 */
 	public final static String CHM_ARTICLE_ADD = "/article/add";
+	
+	/**
+	 * chm详情页面视图
+	 */
+	public final static String CHM_ARTICLE_DETAIL = "/article/detail";
 }
