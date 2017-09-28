@@ -44,7 +44,7 @@ define("/ui-frame/script/article/add", function(require, exports, module){
 					method : "post",
 					type : "json",
 					url : "/article/save",
-					data : {"title" : title, "content" : content, "id" : $("#articleId").val()},
+					data : {"title" : title, "content" : content, "id" : $("#articleId").val(), "update_times" : $("#update_times").val()},
 					success : function(data){
 						if(data.resultCode && data.resultCode == "000000"){
 							window.location.href = "/chm";

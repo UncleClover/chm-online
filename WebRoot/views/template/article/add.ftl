@@ -28,6 +28,7 @@
     </div>
 </div>
 <input type="hidden" id="articleId" name="articleId" value="${article.id}">
+<input type="hidden" id="update_times" name="update_times" value="${article.update_times}">
 <#-- 初始化设置页面对应的JS文件路径 -->
 <script>
 	var pageUrl = "/ui-frame/script/article/add";

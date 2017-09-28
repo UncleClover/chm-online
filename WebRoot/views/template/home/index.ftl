@@ -26,7 +26,7 @@
 <#-- 目录模板 -->
 <script id="hotContentTemplate" type="type/x-jsrender">
 	{{for}}
-		<a href="javascript:void(0);" class="list-group-item">
+		<a href="/article/detail?articleId={{:id}}" class="list-group-item">
         	<i class="fa fa-hand-o-right fa-fw"></i>{{:title}}<span class="pull-right text-muted small"><em>10:57</em></span>
         </a>
 	{{/for}}

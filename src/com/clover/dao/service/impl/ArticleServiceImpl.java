@@ -36,8 +36,13 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	@Override
 	public DataRow queryArticleById(String id, String user_id) {
+		// 更新阅读次数及时间
+		String updateSql = "UPDATE T_CHM_ARTICLE T SET T.READ_TIMES = T.READ_TIMES + 1, T.READ_TIME=? WHERE T.ID=?";
+		this.getJdbcTemplate().update(updateSql, new Object[] { DateUtils.getSysDate(), id });
+
+		// 查询详情
 		String sql = "SELECT * FROM T_CHM_ARTICLE WHERE ID=?";
-		return this.getJdbcTemplate().queryMap(sql, new String[]{id});
+		return this.getJdbcTemplate().queryMap(sql, new String[] { id });
 	}
 
 	@Override
@@ -49,12 +54,15 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 	@Override
 	public int addArticle(DataRow data) {
 		data.set("create_time", DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		data.set("read_times", "0");
+		data.set("update_times", "0");
 		return this.getJdbcTemplate().insert("T_CHM_ARTICLE", data);
 	}
 
 	@Override
 	public int updateArticle(DataRow data) {
 		data.set("update_time", DateUtils.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+		data.set("update_times", String.valueOf(data.getInt("update_times") + 1));
 		return this.getJdbcTemplate().update("T_CHM_ARTICLE", data, "id", data.get("id"));
 	}
 

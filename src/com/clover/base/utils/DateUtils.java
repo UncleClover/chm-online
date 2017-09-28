@@ -1,5 +1,6 @@
 package com.clover.base.utils;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -109,6 +110,19 @@ public class DateUtils {
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		return sdf.format(date);
 	}
+	
+	/**
+	 * 获取系统当前时间-SQL时间格式
+	 * 
+	 * @author zhangdq
+	 * @time 2017年9月21日 下午5:57:18
+	 * @Email qiang900714@126.com
+	 * @return
+	 */
+	public static Timestamp getSysDate() {
+		return new Timestamp(System.currentTimeMillis());
+	}
+
 	
 	public static void main(String[] args) {
 		System.out.println(strToDate("2017-01-21", "yyyy-MM-dd"));

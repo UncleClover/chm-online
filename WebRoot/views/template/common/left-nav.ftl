@@ -37,6 +37,6 @@
 
 <#-- 目录模板 -->
 <script id="contentTemplate" type="type/x-jsrender">
-	{{for}}<li class="item"><a href="/article/detail?articleId={{:id}}" target="_blank">{{:title}}</a></li>{{/for}}
+	{{for}}<li class="item"><a href="/article/detail?articleId={{:id}}">{{:title}}</a></li>{{/for}}
 </script>
 </#escape>

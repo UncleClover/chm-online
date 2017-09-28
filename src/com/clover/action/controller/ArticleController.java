@@ -44,7 +44,7 @@ public class ArticleController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public BaseResponse saveArticle(String title, String content, String id){
+	public BaseResponse saveArticle(String title, String content, String id, String updateTimes){
 		if(StringUtils.isEmpty(title)){
 			return new BaseResponse(ChmConstants.OPER_FAIL_CODE, "chm标题不能为空");
 		}
@@ -55,6 +55,7 @@ public class ArticleController {
 		DataRow data = new DataRow();
 		data.set("title", title);
 		data.set("content", content);
+		data.set("update_times", updateTimes);
 		
 		int row = 0;
 		if(StringUtils.isEmpty(id)){
