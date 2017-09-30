@@ -23,15 +23,15 @@ import com.clover.dao.service.ArticleService;
 @RequestMapping("article")
 public class ArticleController {
 	private static Logger logger = LoggerFactory.getLogger(ArticleController.class);
-	
+
 	@Autowired
 	private ArticleService service;
-	
+
 	@RequestMapping("/add")
 	public String addArticle() {
 		return TemplateConstants.CHM_ARTICLE_ADD;
 	}
-	
+
 	/**
 	 * 保存文章内容
 	 * 
@@ -44,30 +44,30 @@ public class ArticleController {
 	 */
 	@RequestMapping("/save")
 	@ResponseBody
-	public BaseResponse saveArticle(String title, String content, String id, String updateTimes){
-		if(StringUtils.isEmpty(title)){
+	public BaseResponse saveArticle(String title, String content, String id, String updateTimes) {
+		if (StringUtils.isEmpty(title)) {
 			return new BaseResponse(ChmConstants.OPER_FAIL_CODE, "chm标题不能为空");
 		}
-		if(StringUtils.isEmpty(content)){
+		if (StringUtils.isEmpty(content)) {
 			return new BaseResponse(ChmConstants.OPER_FAIL_CODE, "chm内容不能为空");
 		}
-		
+
 		DataRow data = new DataRow();
 		data.set("title", title);
 		data.set("content", content);
 		data.set("update_times", updateTimes);
-		
+
 		int row = 0;
-		if(StringUtils.isEmpty(id)){
+		if (StringUtils.isEmpty(id)) {
 			row = service.addArticle(data);
-		}else{
+		} else {
 			data.set("id", id);
 			row = service.updateArticle(data);
 		}
-		
+
 		return new BaseResponse(ChmConstants.OPER_SUCCESS_CODE, ChmConstants.OPER_SUCCESS_MSG, row);
 	}
-	
+
 	/**
 	 * 分页查询chm列表
 	 * 
@@ -78,11 +78,11 @@ public class ArticleController {
 	 */
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
 	@ResponseBody
-	public BaseResponse queryArticlePageResult(int curPage, int numPerPage){
+	public BaseResponse queryArticlePageResult(int curPage, int numPerPage) {
 		DBPage dbPage = service.queryAllArticle(null, curPage, numPerPage);
 		return new BaseResponse(ChmConstants.OPER_SUCCESS_CODE, ChmConstants.OPER_SUCCESS_MSG, dbPage);
 	}
-	
+
 	/**
 	 * 查询文章详情
 	 * 
@@ -93,13 +93,13 @@ public class ArticleController {
 	 * @return
 	 */
 	@RequestMapping("/detail")
-	public String queryArticleDetailById(String articleId, Model model){
+	public String queryArticleDetailById(String articleId, Model model) {
 		DataRow data = service.queryArticleById(articleId, null);
 		model.addAttribute("article", data);
-		
+
 		return TemplateConstants.CHM_ARTICLE_DETAIL;
 	}
-	
+
 	/**
 	 * 更新chm内容
 	 * 
@@ -111,14 +111,14 @@ public class ArticleController {
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public String updateArticleById(String articleId, Model model){
+	public String updateArticleById(String articleId, Model model) {
 		logger.info("更新ID{}", articleId);
 		DataRow data = service.queryArticleById(articleId, null);
 		model.addAttribute("article", data);
-		
+
 		return TemplateConstants.CHM_ARTICLE_ADD;
 	}
-	
+
 	/**
 	 * 查询常用chm列表
 	 * 
@@ -129,7 +129,7 @@ public class ArticleController {
 	 */
 	@RequestMapping(value = "/hotList", method = RequestMethod.POST)
 	@ResponseBody
-	public BaseResponse queryArticleHomeList(){
+	public BaseResponse queryArticleHomeList() {
 		List<DataRow> articleList = service.queryArticleLimit(null);
 		return new BaseResponse(ChmConstants.OPER_SUCCESS_CODE, ChmConstants.OPER_SUCCESS_MSG, articleList);
 	}
