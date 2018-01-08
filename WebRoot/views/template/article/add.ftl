@@ -16,10 +16,10 @@
                         <div class="panel-body">
                             <div style="padding:0 5px 10px 0px;">
                             	<span style="font-weight:bold;font-size:10px;">CHM标题：</span>
-                            	<input class="index-input" style="width:80%;" type="txt" name="title" id="title" value="${article.title}"/>
+                            	<input class="index-input" style="width:80%;" type="txt" name="title" id="title" value="<#if article.title?exists>${article.title}</#if>"/>
                             </div>
-                               <textarea id="kindeditor" name="content">${article.content}</textarea>
-                               <div style="padding-top:10px;"><a href="javascript:void(0);" class="btn btn-info btn-block" id="save">保存CHM</a></div>
+                            <textarea id="kindeditor" name="content"><#if article.content?exists>${article.content}</#if></textarea>
+                            <div style="padding-top:10px;"><a href="javascript:void(0);" class="btn btn-info btn-block" id="save">保存CHM</a></div>
                         </div>
                     </div>
                 </div>
@@ -27,8 +27,10 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="articleId" name="articleId" value="${article.id}">
-<input type="hidden" id="update_times" name="update_times" value="${article.update_times}">
+<#if article?exists>
+	<input type="hidden" id="articleId" name="articleId" value="${article.id}">
+	<input type="hidden" id="update_times" name="update_times" value="${article.update_times}">
+</#if>
 <#-- 初始化设置页面对应的JS文件路径 -->
 <script>
 	var pageUrl = "/ui-frame/script/article/add";
