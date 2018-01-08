@@ -22,8 +22,8 @@ repositories {
 
 sourceSets{
 	main{
-		java{srcDirs = ["src"]}
-		resources{srcDirs = ["resource"]}
+		java{srcDirs = ["src/main/java"]}
+		resources{srcDirs = ["src/main/resource"]}
 	}
 }
 // 设置依赖
