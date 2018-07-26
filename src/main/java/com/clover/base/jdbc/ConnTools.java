@@ -25,7 +25,7 @@ public class ConnTools {
 
 	/**
 	 * @desc 获取默认数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-5-1 下午7:59:05
 	 * @param
 	 * @return Connection
@@ -43,7 +43,7 @@ public class ConnTools {
 
 	/**
 	 * @desc 根据数据库ID获取数据连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-5-1 下午7:57:18
 	 * @param id
 	 *            数据库ID
@@ -62,7 +62,7 @@ public class ConnTools {
 
 	/**
 	 * @desc 获取数据库单例连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-5-2 23:42:23
 	 * @param id
 	 * @return
@@ -84,7 +84,7 @@ public class ConnTools {
 	
 	/**
 	 * 开启数据库事务
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:21:55
 	 * @param 
 	 * @return
@@ -102,7 +102,7 @@ public class ConnTools {
 
 	/**
 	 * 提交数据库事务
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:21:45
 	 * @param 
 	 * @return
@@ -120,7 +120,7 @@ public class ConnTools {
 
 	/**
 	 * 回滚数据库事务操作
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:21:58
 	 * @param 
 	 * @return
@@ -138,7 +138,7 @@ public class ConnTools {
 
 	/**
 	 * 关闭数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:19:09
 	 * @param 
 	 * @return

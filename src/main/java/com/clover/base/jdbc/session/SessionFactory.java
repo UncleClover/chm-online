@@ -17,7 +17,7 @@ public final class SessionFactory {
 	
 	/**
 	 * @desc 获取指定ID的数据库实例
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-2 下午5:05:29
 	 * @param id 数据库配置ID
 	 * @return Session
@@ -29,7 +29,7 @@ public final class SessionFactory {
 
 	/**
 	 * @desc 获取默认数据库实例
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-2 下午5:06:02
 	 * @param 
 	 * @return Session

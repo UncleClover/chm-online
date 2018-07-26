@@ -645,7 +645,7 @@ public class SessionImpl implements Session {
 	/**
 	 * 数据库结果集关闭
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-06-01 22:36
 	 * @param rs
 	 */
@@ -662,7 +662,7 @@ public class SessionImpl implements Session {
 
 	/**
 	 * 关闭数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-06-01 22:39
 	 * @param stmt
 	 */
@@ -680,7 +680,7 @@ public class SessionImpl implements Session {
 	/**
 	 * 数据转化为DataRow
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-2 下午3:42:58
 	 * @param
 	 * @return
@@ -710,7 +710,7 @@ public class SessionImpl implements Session {
 	
 	/**
 	 * 设置数据库类型：mysql/Oracle
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午4:44:59
 	 * @param Connection 数据库连接
 	 * @return

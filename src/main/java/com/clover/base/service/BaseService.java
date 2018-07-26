@@ -13,7 +13,7 @@ import com.clover.base.jdbc.session.JdbcTemplate;
 public class BaseService {
 	/**
 	 * 根据DataSource id获取数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:55:40
 	 * @param id
 	 * @return JdbcTemplate

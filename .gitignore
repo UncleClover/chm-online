@@ -1,0 +1,11 @@
+/.gradle/
+.classpath
+.classpath
+.project
+*.prefs
+.classpath
+.project
+.settings/.jsdtscope
+.settings/org.eclipse.wst.common.project.facet.core.xml
+/.settings/
+/bin/

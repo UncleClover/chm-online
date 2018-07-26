@@ -14,7 +14,7 @@ import com.clover.base.jdbc.DataRow;
 public interface UserService {
 	/**
 	 * 登录查询
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-4-9 上午1:12:00
 	 * @param userAccount 登录账户
 	 * @param passWord 登录密码

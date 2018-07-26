@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 日期工具类
- * @author zhangdq
+ * @author UncleClover
  * @time 2017-7-3 上午10:58:00
  * @Email qiang900714@126.com
  */
@@ -20,7 +20,7 @@ public class DateUtils {
 	
 	/**
 	 * 获取当前时间(日期格式：Mon Jul 03 10:58:55 CST 2017)
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午10:59:50
 	 * @Email qiang900714@126.com
 	 * @return Date
@@ -35,7 +35,7 @@ public class DateUtils {
 	
 	/**
 	 * 格式化日期(yyyy-MM-dd)
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午11:06:24
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -47,7 +47,7 @@ public class DateUtils {
 	
 	/**
 	 * 格式化日期(默认格式:yyyy-MM-dd)
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午11:07:04
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -64,7 +64,7 @@ public class DateUtils {
 	
 	/**
 	 * 字符串转化为日期(只接受yyyy-MM-dd格式的字符串转化为日期)
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午11:15:11
 	 * @Email qiang900714@126.com
 	 * @param String date
@@ -76,7 +76,7 @@ public class DateUtils {
 	
 	/**
 	 * 字符串转化为日期(默认只接受yyyy-MM-dd格式的字符串转化为日期)
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午11:31:17
 	 * @Email qiang900714@126.com
 	 * @param date
@@ -100,7 +100,7 @@ public class DateUtils {
 	
 	/**
 	 * 日期转化为字符串
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-7-3 上午11:22:40
 	 * @Email qiang900714@126.com
 	 * @param Date date
@@ -114,7 +114,7 @@ public class DateUtils {
 	/**
 	 * 获取系统当前时间-SQL时间格式
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年9月21日 下午5:57:18
 	 * @Email qiang900714@126.com
 	 * @return

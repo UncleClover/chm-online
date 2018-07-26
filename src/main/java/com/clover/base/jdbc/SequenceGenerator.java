@@ -29,7 +29,7 @@ public class SequenceGenerator {
 
 	/**
 	 * 获取SequenceGenerator类的单例
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-11 下午10:07:39
 	 * @return SequenceGenerator
 	 */
@@ -39,7 +39,7 @@ public class SequenceGenerator {
 	
 	/**
 	 * 获取序列的下一个值
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 上午9:52:33
 	 * @param name 序列名字(默认seq_表名)
 	 * @return String
@@ -50,7 +50,7 @@ public class SequenceGenerator {
 	}
 	/**
 	 * 获取序列下一个值
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-11 下午10:09:03
 	 * @param id 数据库配置ID
 	 * @param name 序列名字(默认seq_表名)
@@ -63,7 +63,7 @@ public class SequenceGenerator {
 	
 	/**
 	 * 获取序列下一个值
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:34:21
 	 * @param Connection 数据库连接
 	 * @param name 序列名字(默认seq_表名)
@@ -108,7 +108,7 @@ public class SequenceGenerator {
 
 	/**
 	 * 获取数据库连接的类型，默认是Oracle数据库
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 上午10:45:20
 	 * @param Connection 数据库连接
 	 * @return int
@@ -133,7 +133,7 @@ public class SequenceGenerator {
 	
 	/**
 	 * 根据数据库表名获取序列名字
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:40:32
 	 * @param tableName 表名
 	 * @return String 序列名
@@ -153,7 +153,7 @@ public class SequenceGenerator {
 
 	/**
 	 * 创建Oracle序列
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午5:51:35
 	 * @param Connection 数据库序列
 	 * @param seqName 序列名字
@@ -181,7 +181,7 @@ public class SequenceGenerator {
 	
 	/**
 	 * 关闭预编译对象
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午6:01:38
 	 * @param Statement
 	 * @return
@@ -199,7 +199,7 @@ public class SequenceGenerator {
 	
 	/**
 	 * 关闭数据库结果集
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-13 下午6:04:11
 	 * @param ResultSet 结果集对象
 	 * @return

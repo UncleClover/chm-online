@@ -58,7 +58,7 @@ dependencies {
 	compile "com.fasterxml.jackson.core:jackson-databind:2.8.9"
 	compile "com.alibaba:fastjson:1.2.37"
 	
-	compile "com.clover.tools:tools:1.0.2-SNAPSHOT"
+	compile "com.clover.api:tools:1.0.2-SNAPSHOT"
 	
 	
 	testCompile(

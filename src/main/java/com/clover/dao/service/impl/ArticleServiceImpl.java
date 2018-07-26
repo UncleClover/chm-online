@@ -18,7 +18,7 @@ public class ArticleServiceImpl extends BaseService implements ArticleService {
 
 	/**
 	 * 获取数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午3:03:42
 	 * @param 
 	 * @return

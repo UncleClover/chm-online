@@ -27,7 +27,7 @@ public class DBPage {
 
 	/**
 	 * @desc 构造方法
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @param currentPage
 	 * @param numPerPage
 	 */
@@ -38,7 +38,7 @@ public class DBPage {
 
 	/**
 	 * @desc 设置分页总行数
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-5 下午5:47:19
 	 * @param totalRows 分页总行数
 	 */
@@ -79,7 +79,7 @@ public class DBPage {
 
 	/**
 	 * @desc 计算总共可以分成几页
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-6 下午1:02:50
 	 * @param 
 	 * @return
@@ -94,7 +94,7 @@ public class DBPage {
 
 	/**
 	 * @desc 计算分页查询的起始页数
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-6 下午1:03:22
 	 * @param 
 	 * @return
@@ -105,7 +105,7 @@ public class DBPage {
 
 	/**
 	 * @desc 计算分页查询的结束页数
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-6-6 下午1:08:34
 	 * @param 
 	 * @return

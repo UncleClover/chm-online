@@ -78,7 +78,7 @@ public class DataSourceTools {
 
 	/**
 	 * @desc 创建C3P0数据源
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-4-9 下午7:50:54
 	 * @param Map
 	 * @return DataSource
@@ -112,7 +112,7 @@ public class DataSourceTools {
 
 	/**
 	 * @desc 获取默认的数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-5-1 下午7:15:48
 	 * @param
 	 * @return DataSource
@@ -135,7 +135,7 @@ public class DataSourceTools {
 
 	/**
 	 * @desc 获取指定的数据库连接
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017-5-1 下午7:14:53
 	 * @param id 指定数据库ID
 	 * @return DataSource
@@ -151,7 +151,7 @@ public class DataSourceTools {
 
 	/**
 	 * @desc 获取指定数据库连接配置
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017.5.2 下午23:35:00
 	 * @param id
 	 * @return

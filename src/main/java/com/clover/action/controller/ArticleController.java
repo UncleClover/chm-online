@@ -35,7 +35,7 @@ public class ArticleController {
 	/**
 	 * 保存文章内容
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年8月29日 下午11:13:34
 	 * @Email qiang900714@126.com
 	 * @param title
@@ -71,7 +71,7 @@ public class ArticleController {
 	/**
 	 * 分页查询chm列表
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年8月31日 上午12:26:18
 	 * @Email qiang900714@126.com
 	 * @return
@@ -86,7 +86,7 @@ public class ArticleController {
 	/**
 	 * 查询文章详情
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年9月3日 下午10:23:03
 	 * @Email qiang900714@126.com
 	 * @param articleId
@@ -103,7 +103,7 @@ public class ArticleController {
 	/**
 	 * 更新chm内容
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年9月18日 下午9:46:48
 	 * @Email qiang900714@126.com
 	 * @param articleId
@@ -122,7 +122,7 @@ public class ArticleController {
 	/**
 	 * 查询常用chm列表
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年8月31日 上午12:26:18
 	 * @Email qiang900714@126.com
 	 * @return

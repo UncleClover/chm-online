@@ -2,7 +2,7 @@ package com.clover.base.constants;
 
 /**
  * freemarker模板文件路径
- * @author zhangdq
+ * @author UncleClover
  * @time 2017-7-17 下午2:46:08
  * @Email qiang900714@126.com
  */

@@ -17,7 +17,7 @@ public interface ArticleService {
 	
 	/**
 	 * 查询当前用户所有的CHM列表
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:35:48
 	 * @param user_id 用户ID
 	 * @return DBPage
@@ -26,7 +26,7 @@ public interface ArticleService {
 	
 	/**
 	 * 根据chm ID查询
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:37:10
 	 * @param id 文章ID
 	 * @param user_id 用户ID
@@ -36,7 +36,7 @@ public interface ArticleService {
 	
 	/**
 	 * 查询chm
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:37:53
 	 * @param DataRow
 	 * @return DataRow
@@ -45,7 +45,7 @@ public interface ArticleService {
 	
 	/**
 	 * 增加chm
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:39:12
 	 * @param 
 	 * @return
@@ -54,7 +54,7 @@ public interface ArticleService {
 	
 	/**
 	 * 更新chm
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:39:39
 	 * @param 
 	 * @return
@@ -63,7 +63,7 @@ public interface ArticleService {
 	
 	/**
 	 * 根据chm ID和账户user_id删除chm
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:42:43
 	 * @param 
 	 * @return
@@ -72,7 +72,7 @@ public interface ArticleService {
 	
 	/**
 	 * 删除chm
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @date 2017-6-27 下午2:42:08
 	 * @param 
 	 * @return
@@ -82,7 +82,7 @@ public interface ArticleService {
 	/**
 	 * 查询首页常用chm列表
 	 * 
-	 * @author zhangdq
+	 * @author UncleClover
 	 * @time 2017年9月18日 下午10:21:21
 	 * @Email qiang900714@126.com
 	 * @param user_id

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * 返回结果封装
- * @author zhangdq
+ * @author UncleClover
  * @time 2017-7-19 上午10:33:34
  * @Email qiang900714@126.com
  */
